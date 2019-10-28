@@ -1,13 +1,13 @@
 import { createElement } from 'lwc';
-import MyApp from 'my/app';
+import MyApp from 'c/app';
 
-describe('my-app', () => {
+describe('c-app', () => {
     // eslint-disable-next-line no-undef
     benchmark('create_and_render', () => {
         let element;
         // eslint-disable-next-line no-undef
         run(() => {
-            element = createElement('my-app', { is: MyApp });
+            element = createElement('c-app', { is: MyApp });
             element.flavor = 'red';
             document.body.appendChild(element);
         });
