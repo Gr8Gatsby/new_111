@@ -1,7 +1,7 @@
-(function (MyApp) {
-  'use strict';
+(function(MyApp) {
+  "use strict";
 
-  MyApp = MyApp && MyApp.hasOwnProperty('default') ? MyApp['default'] : MyApp;
+  MyApp = MyApp && MyApp.hasOwnProperty("default") ? MyApp["default"] : MyApp;
 
   var _tmpl = void 0;
 
@@ -15,7 +15,7 @@
    */
   function detect() {
     // Don't apply polyfill when ProxyCompat is enabled.
-    if ('getKey' in Proxy) {
+    if ("getKey" in Proxy) {
       return false;
     }
 
@@ -30,13 +30,8 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
-  const {
-    isConcatSpreadable
-  } = Symbol;
-  const {
-    isArray
-  } = Array;
+  const { isConcatSpreadable } = Symbol;
+  const { isArray } = Array;
   const {
     slice: ArraySlice,
     unshift: ArrayUnshift,
@@ -44,9 +39,8 @@
   } = Array.prototype;
 
   function isObject(O) {
-    return typeof O === 'object' ? O !== null : typeof O === 'function';
+    return typeof O === "object" ? O !== null : typeof O === "function";
   } // https://www.ecma-international.org/ecma-262/6.0/#sec-isconcatspreadable
-
 
   function isSpreadable(O) {
     if (!isObject(O)) {
@@ -56,7 +50,6 @@
     const spreadable = O[isConcatSpreadable];
     return spreadable !== undefined ? Boolean(spreadable) : isArray(O);
   } // https://www.ecma-international.org/ecma-262/6.0/#sec-array.prototype.concat
-
 
   function ArrayConcatPolyfill(..._args) {
     const O = Object(this);
@@ -97,7 +90,6 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   if (detect()) {
     apply();
   }
@@ -108,9 +100,10 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   function detect$1(propName) {
-    return Object.getOwnPropertyDescriptor(Element.prototype, propName) === undefined;
+    return (
+      Object.getOwnPropertyDescriptor(Element.prototype, propName) === undefined
+    );
   }
   /**
    * Copyright (C) 2018 salesforce.com, inc.
@@ -122,7 +115,6 @@
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
-
 
   function invariant(value, msg) {
     if (!value) {
@@ -147,13 +139,13 @@
   }
 
   var assert =
-  /*#__PURE__*/
-  Object.freeze({
-    invariant: invariant,
-    isTrue: isTrue,
-    isFalse: isFalse,
-    fail: fail
-  });
+    /*#__PURE__*/
+    Object.freeze({
+      invariant: invariant,
+      isTrue: isTrue,
+      isFalse: isFalse,
+      fail: fail
+    });
   /*
    * Copyright (c) 2018, salesforce.com, inc.
    * All rights reserved.
@@ -175,9 +167,7 @@
     seal,
     setPrototypeOf
   } = Object;
-  const {
-    isArray: isArray$1
-  } = Array;
+  const { isArray: isArray$1 } = Array;
   const {
     constructor: ArrayConstructor,
     filter: ArrayFilter,
@@ -217,15 +207,15 @@
   }
 
   function isFunction(obj) {
-    return typeof obj === 'function';
+    return typeof obj === "function";
   }
 
   function isObject$1(obj) {
-    return typeof obj === 'object';
+    return typeof obj === "object";
   }
 
   function isString(obj) {
-    return typeof obj === 'string';
+    return typeof obj === "string";
   }
 
   const OtS = {}.toString;
@@ -236,11 +226,11 @@
       // Array.prototype.toString directly will cause an error Iterate through
       // all the items and handle individually.
       if (isArray$1(obj)) {
-        return ArrayJoin.call(ArrayMap.call(obj, toString), ',');
+        return ArrayJoin.call(ArrayMap.call(obj, toString), ",");
       }
 
       return obj.toString();
-    } else if (typeof obj === 'object') {
+    } else if (typeof obj === "object") {
       return OtS.call(obj);
     } else {
       return obj + emptyString;
@@ -259,7 +249,7 @@
     } while (o !== null);
   }
 
-  const emptyString = '';
+  const emptyString = "";
   /*
    * Copyright (c) 2018, salesforce.com, inc.
    * All rights reserved.
@@ -274,11 +264,13 @@
    * are not supported. Note that we can't use typeof since it will fail when transpiling.
    */
 
-  const hasNativeSymbolsSupport = Symbol('x').toString() === 'Symbol(x)';
+  const hasNativeSymbolsSupport = Symbol("x").toString() === "Symbol(x)";
 
   function createFieldName(key, namespace) {
     // @ts-ignore: using a string as a symbol for perf reasons
-    return hasNativeSymbolsSupport ? Symbol(key) : `$$lwc-${namespace}-${key}$$`;
+    return hasNativeSymbolsSupport
+      ? Symbol(key)
+      : `$$lwc-${namespace}-${key}$$`;
   }
 
   const hiddenFieldsMap = new WeakMap();
@@ -290,7 +282,6 @@
       valuesByField = create(null);
       hiddenFieldsMap.set(o, valuesByField);
     } // @ts-ignore https://github.com/microsoft/TypeScript/issues/1863
-
 
     valuesByField[fieldName] = value;
   }
@@ -305,12 +296,12 @@
   }
 
   var fields =
-  /*#__PURE__*/
-  Object.freeze({
-    createFieldName: createFieldName,
-    setHiddenField: setHiddenField,
-    getHiddenField: getHiddenField
-  });
+    /*#__PURE__*/
+    Object.freeze({
+      createFieldName: createFieldName,
+      setHiddenField: setHiddenField,
+      getHiddenField: getHiddenField
+    });
   /** version: 1.1.0 */
 
   /*
@@ -328,7 +319,8 @@
     removeAttribute,
     removeAttributeNS
   } = Element.prototype;
-  const tagNameGetter = getOwnPropertyDescriptor(Element.prototype, 'tagName').get;
+  const tagNameGetter = getOwnPropertyDescriptor(Element.prototype, "tagName")
+    .get;
   /*
    * Copyright (c) 2018, salesforce.com, inc.
    * All rights reserved.
@@ -339,9 +331,7 @@
 
   const ARIA_REGEX = /^aria/;
   const nodeToAriaPropertyValuesMap = new WeakMap();
-  const {
-    hasOwnProperty: hasOwnProperty$1
-  } = Object.prototype;
+  const { hasOwnProperty: hasOwnProperty$1 } = Object.prototype;
   const {
     replace: StringReplace$1,
     toLowerCase: StringToLowerCase$1
@@ -359,7 +349,7 @@
   }
 
   function getNormalizedAriaPropertyValue(value) {
-    return value == null ? null : value + '';
+    return value == null ? null : value + "";
   }
 
   function createAriaPropertyPropertyDescriptor(propName, attrName) {
@@ -371,8 +361,9 @@
           return map[propName];
         } // otherwise just reflect what's in the attribute
 
-
-        return hasAttribute.call(this, attrName) ? getAttribute.call(this, attrName) : null;
+        return hasAttribute.call(this, attrName)
+          ? getAttribute.call(this, attrName)
+          : null;
       },
 
       set(newValue) {
@@ -396,7 +387,7 @@
     // Typescript is inferring the wrong function type for this particular
     // overloaded method: https://github.com/Microsoft/TypeScript/issues/27972
     // @ts-ignore type-mismatch
-    const replaced = StringReplace$1.call(propName, ARIA_REGEX, 'aria-');
+    const replaced = StringReplace$1.call(propName, ARIA_REGEX, "aria-");
     const attrName = StringToLowerCase$1.call(replaced);
     const descriptor = createAriaPropertyPropertyDescriptor(propName, attrName);
     Object.defineProperty(Element.prototype, propName, descriptor);
@@ -409,14 +400,65 @@
    */
   // https://wicg.github.io/aom/spec/aria-reflection.html
 
-
-  const ElementPrototypeAriaPropertyNames = ['ariaAutoComplete', 'ariaChecked', 'ariaCurrent', 'ariaDisabled', 'ariaExpanded', 'ariaHasPopup', 'ariaHidden', 'ariaInvalid', 'ariaLabel', 'ariaLevel', 'ariaMultiLine', 'ariaMultiSelectable', 'ariaOrientation', 'ariaPressed', 'ariaReadOnly', 'ariaRequired', 'ariaSelected', 'ariaSort', 'ariaValueMax', 'ariaValueMin', 'ariaValueNow', 'ariaValueText', 'ariaLive', 'ariaRelevant', 'ariaAtomic', 'ariaBusy', 'ariaActiveDescendant', 'ariaControls', 'ariaDescribedBy', 'ariaFlowTo', 'ariaLabelledBy', 'ariaOwns', 'ariaPosInSet', 'ariaSetSize', 'ariaColCount', 'ariaColIndex', 'ariaDetails', 'ariaErrorMessage', 'ariaKeyShortcuts', 'ariaModal', 'ariaPlaceholder', 'ariaRoleDescription', 'ariaRowCount', 'ariaRowIndex', 'ariaRowSpan', 'ariaColSpan', 'role'];
+  const ElementPrototypeAriaPropertyNames = [
+    "ariaAutoComplete",
+    "ariaChecked",
+    "ariaCurrent",
+    "ariaDisabled",
+    "ariaExpanded",
+    "ariaHasPopup",
+    "ariaHidden",
+    "ariaInvalid",
+    "ariaLabel",
+    "ariaLevel",
+    "ariaMultiLine",
+    "ariaMultiSelectable",
+    "ariaOrientation",
+    "ariaPressed",
+    "ariaReadOnly",
+    "ariaRequired",
+    "ariaSelected",
+    "ariaSort",
+    "ariaValueMax",
+    "ariaValueMin",
+    "ariaValueNow",
+    "ariaValueText",
+    "ariaLive",
+    "ariaRelevant",
+    "ariaAtomic",
+    "ariaBusy",
+    "ariaActiveDescendant",
+    "ariaControls",
+    "ariaDescribedBy",
+    "ariaFlowTo",
+    "ariaLabelledBy",
+    "ariaOwns",
+    "ariaPosInSet",
+    "ariaSetSize",
+    "ariaColCount",
+    "ariaColIndex",
+    "ariaDetails",
+    "ariaErrorMessage",
+    "ariaKeyShortcuts",
+    "ariaModal",
+    "ariaPlaceholder",
+    "ariaRoleDescription",
+    "ariaRowCount",
+    "ariaRowIndex",
+    "ariaRowSpan",
+    "ariaColSpan",
+    "role"
+  ];
   /**
    * Note: Attributes aria-dropeffect and aria-grabbed were deprecated in
    * ARIA 1.1 and do not have corresponding IDL attributes.
    */
 
-  for (let i = 0, len = ElementPrototypeAriaPropertyNames.length; i < len; i += 1) {
+  for (
+    let i = 0, len = ElementPrototypeAriaPropertyNames.length;
+    i < len;
+    i += 1
+  ) {
     const propName = ElementPrototypeAriaPropertyNames[i];
 
     if (detect$1(propName)) {
@@ -430,13 +472,34 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
-  const defaultDefHTMLPropertyNames = ['accessKey', 'dir', 'draggable', 'hidden', 'id', 'lang', 'tabIndex', 'title']; // Few more exceptions that are using the attribute name to match the property in lowercase.
+  const defaultDefHTMLPropertyNames = [
+    "accessKey",
+    "dir",
+    "draggable",
+    "hidden",
+    "id",
+    "lang",
+    "tabIndex",
+    "title"
+  ]; // Few more exceptions that are using the attribute name to match the property in lowercase.
   // this list was compiled from https://msdn.microsoft.com/en-us/library/ms533062(v=vs.85).aspx
   // and https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
   // Note: this list most be in sync with the compiler as well.
 
-  const HTMLPropertyNamesWithLowercasedReflectiveAttributes = ['accessKey', 'readOnly', 'tabIndex', 'bgColor', 'colSpan', 'rowSpan', 'contentEditable', 'dateTime', 'formAction', 'isMap', 'maxLength', 'useMap'];
+  const HTMLPropertyNamesWithLowercasedReflectiveAttributes = [
+    "accessKey",
+    "readOnly",
+    "tabIndex",
+    "bgColor",
+    "colSpan",
+    "rowSpan",
+    "contentEditable",
+    "dateTime",
+    "formAction",
+    "isMap",
+    "maxLength",
+    "useMap"
+  ];
 
   function offsetPropertyErrorMessage(name) {
     return `Using the \`${name}\` property is an anti-pattern because it rounds the value to an integer. Instead, use the \`getBoundingClientRect\` method to obtain fractional values for the size of an element and its position relative to the viewport.`;
@@ -444,65 +507,66 @@
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
   // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement
 
-
   const globalHTMLProperties = assign(create(null), {
     accessKey: {
-      attribute: 'accesskey'
+      attribute: "accesskey"
     },
     accessKeyLabel: {
       readOnly: true
     },
     className: {
-      attribute: 'class',
-      error: 'Using the `className` property is an anti-pattern because of slow runtime behavior and potential conflicts with classes provided by the owner element. Use the `classList` API instead.'
+      attribute: "class",
+      error:
+        "Using the `className` property is an anti-pattern because of slow runtime behavior and potential conflicts with classes provided by the owner element. Use the `classList` API instead."
     },
     contentEditable: {
-      attribute: 'contenteditable'
+      attribute: "contenteditable"
     },
     dataset: {
       readOnly: true,
-      error: "Using the `dataset` property is an anti-pattern because it can't be statically analyzed. Expose each property individually using the `@api` decorator instead."
+      error:
+        "Using the `dataset` property is an anti-pattern because it can't be statically analyzed. Expose each property individually using the `@api` decorator instead."
     },
     dir: {
-      attribute: 'dir'
+      attribute: "dir"
     },
     draggable: {
-      attribute: 'draggable'
+      attribute: "draggable"
     },
     dropzone: {
-      attribute: 'dropzone',
+      attribute: "dropzone",
       readOnly: true
     },
     hidden: {
-      attribute: 'hidden'
+      attribute: "hidden"
     },
     id: {
-      attribute: 'id'
+      attribute: "id"
     },
     inputMode: {
-      attribute: 'inputmode'
+      attribute: "inputmode"
     },
     lang: {
-      attribute: 'lang'
+      attribute: "lang"
     },
     slot: {
-      attribute: 'slot',
-      error: 'Using the `slot` property is an anti-pattern.'
+      attribute: "slot",
+      error: "Using the `slot` property is an anti-pattern."
     },
     spellcheck: {
-      attribute: 'spellcheck'
+      attribute: "spellcheck"
     },
     style: {
-      attribute: 'style'
+      attribute: "style"
     },
     tabIndex: {
-      attribute: 'tabindex'
+      attribute: "tabindex"
     },
     title: {
-      attribute: 'title'
+      attribute: "title"
     },
     translate: {
-      attribute: 'translate'
+      attribute: "translate"
     },
     // additional "global attributes" that are not present in the link above.
     isContentEditable: {
@@ -510,25 +574,25 @@
     },
     offsetHeight: {
       readOnly: true,
-      error: offsetPropertyErrorMessage('offsetHeight')
+      error: offsetPropertyErrorMessage("offsetHeight")
     },
     offsetLeft: {
       readOnly: true,
-      error: offsetPropertyErrorMessage('offsetLeft')
+      error: offsetPropertyErrorMessage("offsetLeft")
     },
     offsetParent: {
       readOnly: true
     },
     offsetTop: {
       readOnly: true,
-      error: offsetPropertyErrorMessage('offsetTop')
+      error: offsetPropertyErrorMessage("offsetTop")
     },
     offsetWidth: {
       readOnly: true,
-      error: offsetPropertyErrorMessage('offsetWidth')
+      error: offsetPropertyErrorMessage("offsetWidth")
     },
     role: {
-      attribute: 'role'
+      attribute: "role"
     }
   });
   const AttrNameToPropNameMap = create(null);
@@ -538,7 +602,9 @@
     // Typescript is inferring the wrong function type for this particular
     // overloaded method: https://github.com/Microsoft/TypeScript/issues/27972
     // @ts-ignore type-mismatch
-    const attrName = StringToLowerCase.call(StringReplace.call(propName, /^aria/, 'aria-'));
+    const attrName = StringToLowerCase.call(
+      StringReplace.call(propName, /^aria/, "aria-")
+    );
     AttrNameToPropNameMap[attrName] = propName;
     PropNameToAttrNameMap[propName] = attrName;
   });
@@ -547,11 +613,14 @@
     AttrNameToPropNameMap[attrName] = propName;
     PropNameToAttrNameMap[propName] = attrName;
   });
-  forEach.call(HTMLPropertyNamesWithLowercasedReflectiveAttributes, propName => {
-    const attrName = StringToLowerCase.call(propName);
-    AttrNameToPropNameMap[attrName] = propName;
-    PropNameToAttrNameMap[propName] = attrName;
-  });
+  forEach.call(
+    HTMLPropertyNamesWithLowercasedReflectiveAttributes,
+    propName => {
+      const attrName = StringToLowerCase.call(propName);
+      AttrNameToPropNameMap[attrName] = propName;
+      PropNameToAttrNameMap[propName] = attrName;
+    }
+  );
 
   const CAPS_REGEX = /[A-Z]/g;
   /**
@@ -561,7 +630,11 @@
 
   function getAttrNameFromPropName(propName) {
     if (isUndefined(PropNameToAttrNameMap[propName])) {
-      PropNameToAttrNameMap[propName] = StringReplace.call(propName, CAPS_REGEX, match => '-' + match.toLowerCase());
+      PropNameToAttrNameMap[propName] = StringReplace.call(
+        propName,
+        CAPS_REGEX,
+        match => "-" + match.toLowerCase()
+      );
     }
 
     return PropNameToAttrNameMap[propName];
@@ -573,18 +646,14 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
-  const {
-    createFieldName: createFieldName$1
-  } = fields;
+  const { createFieldName: createFieldName$1 } = fields;
   let nextTickCallbackQueue = [];
   const SPACE_CHAR = 32;
   const EmptyObject = seal(create(null));
   const EmptyArray = seal([]);
-  const ViewModelReflection = createFieldName$1('ViewModel', 'engine');
+  const ViewModelReflection = createFieldName$1("ViewModel", "engine");
 
   function flushCallbackQueue() {
-
     const callbacks = nextTickCallbackQueue;
     nextTickCallbackQueue = []; // reset to a new queue
 
@@ -594,7 +663,6 @@
   }
 
   function addCallbackToNextTick(callback) {
-
     if (nextTickCallbackQueue.length === 0) {
       Promise.resolve().then(flushCallbackQueue);
     }
@@ -603,7 +671,7 @@
   }
 
   function isCircularModuleDependency(value) {
-    return hasOwnProperty.call(value, '__circular__');
+    return hasOwnProperty.call(value, "__circular__");
   }
   /**
    * When LWC is used in the context of an Aura application, the compiler produces AMD
@@ -615,13 +683,14 @@
    * it returns the original value.
    */
 
-
   function resolveCircularModuleDependency(fn) {
-
     return fn();
   }
 
-  const useSyntheticShadow = hasOwnProperty.call(Element.prototype, '$shadowToken$');
+  const useSyntheticShadow = hasOwnProperty.call(
+    Element.prototype,
+    "$shadowToken$"
+  );
   /*
    * Copyright (c) 2018, salesforce.com, inc.
    * All rights reserved.
@@ -629,15 +698,10 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   function handleEvent(event, vnode) {
+    const { type } = event;
     const {
-      type
-    } = event;
-    const {
-      data: {
-        on
-      }
+      data: { on }
     } = vnode;
     const handler = on && on[type]; // call event handler if exists
 
@@ -663,9 +727,7 @@
 
   function createAllEventListeners(vnode) {
     const {
-      data: {
-        on
-      }
+      data: { on }
     } = vnode;
 
     if (isUndefined(on)) {
@@ -673,7 +735,7 @@
     }
 
     const elm = vnode.elm;
-    const listener = vnode.listener = createListener();
+    const listener = (vnode.listener = createListener());
     listener.vnode = vnode;
     let name;
 
@@ -693,15 +755,13 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-  const xlinkNS = 'http://www.w3.org/1999/xlink';
-  const xmlNS = 'http://www.w3.org/XML/1998/namespace';
+  const xlinkNS = "http://www.w3.org/1999/xlink";
+  const xmlNS = "http://www.w3.org/XML/1998/namespace";
   const ColonCharCode = 58;
 
   function updateAttrs(oldVnode, vnode) {
     const {
-      data: {
-        attrs
-      }
+      data: { attrs }
     } = vnode;
 
     if (isUndefined(attrs)) {
@@ -709,9 +769,7 @@
     }
 
     let {
-      data: {
-        attrs: oldAttrs
-      }
+      data: { attrs: oldAttrs }
     } = oldVnode;
 
     if (oldAttrs === attrs) {
@@ -729,7 +787,6 @@
       const old = oldAttrs[key];
 
       if (old !== cur) {
-
         if (StringCharCodeAt.call(key, 3) === ColonCharCode) {
           // Assume xml namespace
           elm.setAttributeNS(xmlNS, key, cur);
@@ -790,9 +847,7 @@
    * Copyright (C) 2017 salesforce.com, inc.
    */
 
-  const {
-    isArray: isArray$2
-  } = Array;
+  const { isArray: isArray$2 } = Array;
   const {
     getPrototypeOf: getPrototypeOf$1,
     create: ObjectCreate,
@@ -816,11 +871,11 @@
   }
 
   function isFunction$1(obj) {
-    return typeof obj === 'function';
+    return typeof obj === "function";
   }
 
   function isObject$2(obj) {
-    return typeof obj === 'object';
+    return typeof obj === "object";
   }
 
   const proxyToValueMap = new WeakMap();
@@ -829,7 +884,8 @@
     proxyToValueMap.set(proxy, value);
   }
 
-  const unwrap = replicaOrAny => proxyToValueMap.get(replicaOrAny) || replicaOrAny;
+  const unwrap = replicaOrAny =>
+    proxyToValueMap.get(replicaOrAny) || replicaOrAny;
 
   function wrapValue(membrane, value) {
     return membrane.valueIsObservable(value) ? membrane.getProxy(value) : value;
@@ -840,9 +896,8 @@
    * @param descriptor external descrpitor provided to define new property on original value
    */
 
-
   function unwrapDescriptor(descriptor) {
-    if (hasOwnProperty$2.call(descriptor, 'value')) {
+    if (hasOwnProperty$2.call(descriptor, "value")) {
       descriptor.value = unwrap(descriptor.value);
     }
 
@@ -850,7 +905,10 @@
   }
 
   function lockShadowTarget(membrane, shadowTarget, originalTarget) {
-    const targetKeys = ArrayConcat.call(getOwnPropertyNames$1(originalTarget), getOwnPropertySymbols(originalTarget));
+    const targetKeys = ArrayConcat.call(
+      getOwnPropertyNames$1(originalTarget),
+      getOwnPropertySymbols(originalTarget)
+    );
     targetKeys.forEach(key => {
       let descriptor = getOwnPropertyDescriptor$1(originalTarget, key); // We do not need to wrap the descriptor if configurable
       // Because we can deal with wrapping it when user goes through
@@ -874,14 +932,9 @@
     }
 
     get(shadowTarget, key) {
-      const {
-        originalTarget,
-        membrane
-      } = this;
+      const { originalTarget, membrane } = this;
       const value = originalTarget[key];
-      const {
-        valueObserved
-      } = membrane;
+      const { valueObserved } = membrane;
       valueObserved(originalTarget, key);
       return membrane.getProxy(value);
     }
@@ -889,16 +942,14 @@
     set(shadowTarget, key, value) {
       const {
         originalTarget,
-        membrane: {
-          valueMutated
-        }
+        membrane: { valueMutated }
       } = this;
       const oldValue = originalTarget[key];
 
       if (oldValue !== value) {
         originalTarget[key] = value;
         valueMutated(originalTarget, key);
-      } else if (key === 'length' && isArray$2(originalTarget)) {
+      } else if (key === "length" && isArray$2(originalTarget)) {
         // fix for issue #236: push will add the new index, and by the time length
         // is updated, the internal length is already equal to the new length value
         // therefore, the oldValue is equal to the value. This is the forking logic
@@ -912,9 +963,7 @@
     deleteProperty(shadowTarget, key) {
       const {
         originalTarget,
-        membrane: {
-          valueMutated
-        }
+        membrane: { valueMutated }
       } = this;
       delete originalTarget[key];
       valueMutated(originalTarget, key);
@@ -932,19 +981,18 @@
     has(shadowTarget, key) {
       const {
         originalTarget,
-        membrane: {
-          valueObserved
-        }
+        membrane: { valueObserved }
       } = this;
       valueObserved(originalTarget, key);
       return key in originalTarget;
     }
 
     ownKeys(shadowTarget) {
-      const {
-        originalTarget
-      } = this;
-      return ArrayConcat.call(getOwnPropertyNames$1(originalTarget), getOwnPropertySymbols(originalTarget));
+      const { originalTarget } = this;
+      return ArrayConcat.call(
+        getOwnPropertyNames$1(originalTarget),
+        getOwnPropertySymbols(originalTarget)
+      );
     }
 
     isExtensible(shadowTarget) {
@@ -954,10 +1002,7 @@
         return shadowIsExtensible;
       }
 
-      const {
-        originalTarget,
-        membrane
-      } = this;
+      const { originalTarget, membrane } = this;
       const targetIsExtensible = isExtensible(originalTarget);
 
       if (!targetIsExtensible) {
@@ -967,24 +1012,16 @@
       return targetIsExtensible;
     }
 
-    setPrototypeOf(shadowTarget, prototype) {
-    }
+    setPrototypeOf(shadowTarget, prototype) {}
 
     getPrototypeOf(shadowTarget) {
-      const {
-        originalTarget
-      } = this;
+      const { originalTarget } = this;
       return getPrototypeOf$1(originalTarget);
     }
 
     getOwnPropertyDescriptor(shadowTarget, key) {
-      const {
-        originalTarget,
-        membrane
-      } = this;
-      const {
-        valueObserved
-      } = this.membrane; // keys looked up via hasOwnProperty need to be reactive
+      const { originalTarget, membrane } = this;
+      const { valueObserved } = this.membrane; // keys looked up via hasOwnProperty need to be reactive
 
       valueObserved(originalTarget, key);
       let desc = getOwnPropertyDescriptor$1(originalTarget, key);
@@ -1001,7 +1038,6 @@
       // but access to the value, setter or getter (if available) cannot observe
       // mutations, just like regular methods, in which case we just do nothing.
 
-
       desc = wrapDescriptor(membrane, desc, wrapValue);
 
       if (!desc.configurable) {
@@ -1017,26 +1053,16 @@
     }
 
     preventExtensions(shadowTarget) {
-      const {
-        originalTarget,
-        membrane
-      } = this;
+      const { originalTarget, membrane } = this;
       lockShadowTarget(membrane, shadowTarget, originalTarget);
       preventExtensions(originalTarget);
       return true;
     }
 
     defineProperty(shadowTarget, key, descriptor) {
-      const {
-        originalTarget,
-        membrane
-      } = this;
-      const {
-        valueMutated
-      } = membrane;
-      const {
-        configurable
-      } = descriptor; // We have to check for value in descriptor
+      const { originalTarget, membrane } = this;
+      const { valueMutated } = membrane;
+      const { configurable } = descriptor; // We have to check for value in descriptor
       // because Object.freeze(proxy) calls this method
       // with only { configurable: false, writeable: false }
       // Additionally, method will only be called with writeable:false
@@ -1044,25 +1070,36 @@
       // So we can just check if writable is present and then see if
       // value is present. This eliminates getter and setter descriptors
 
-      if (hasOwnProperty$2.call(descriptor, 'writable') && !hasOwnProperty$2.call(descriptor, 'value')) {
-        const originalDescriptor = getOwnPropertyDescriptor$1(originalTarget, key);
+      if (
+        hasOwnProperty$2.call(descriptor, "writable") &&
+        !hasOwnProperty$2.call(descriptor, "value")
+      ) {
+        const originalDescriptor = getOwnPropertyDescriptor$1(
+          originalTarget,
+          key
+        );
         descriptor.value = originalDescriptor.value;
       }
 
       ObjectDefineProperty(originalTarget, key, unwrapDescriptor(descriptor));
 
       if (configurable === false) {
-        ObjectDefineProperty(shadowTarget, key, wrapDescriptor(membrane, descriptor, wrapValue));
+        ObjectDefineProperty(
+          shadowTarget,
+          key,
+          wrapDescriptor(membrane, descriptor, wrapValue)
+        );
       }
 
       valueMutated(originalTarget, key);
       return true;
     }
-
   }
 
   function wrapReadOnlyValue(membrane, value) {
-    return membrane.valueIsObservable(value) ? membrane.getReadOnlyProxy(value) : value;
+    return membrane.valueIsObservable(value)
+      ? membrane.getReadOnlyProxy(value)
+      : value;
   }
 
   class ReadOnlyHandler {
@@ -1072,25 +1109,18 @@
     }
 
     get(shadowTarget, key) {
-      const {
-        membrane,
-        originalTarget
-      } = this;
+      const { membrane, originalTarget } = this;
       const value = originalTarget[key];
-      const {
-        valueObserved
-      } = membrane;
+      const { valueObserved } = membrane;
       valueObserved(originalTarget, key);
       return membrane.getReadOnlyProxy(value);
     }
 
     set(shadowTarget, key, value) {
-
       return false;
     }
 
     deleteProperty(shadowTarget, key) {
-
       return false;
     }
 
@@ -1105,32 +1135,25 @@
     has(shadowTarget, key) {
       const {
         originalTarget,
-        membrane: {
-          valueObserved
-        }
+        membrane: { valueObserved }
       } = this;
       valueObserved(originalTarget, key);
       return key in originalTarget;
     }
 
     ownKeys(shadowTarget) {
-      const {
-        originalTarget
-      } = this;
-      return ArrayConcat.call(getOwnPropertyNames$1(originalTarget), getOwnPropertySymbols(originalTarget));
+      const { originalTarget } = this;
+      return ArrayConcat.call(
+        getOwnPropertyNames$1(originalTarget),
+        getOwnPropertySymbols(originalTarget)
+      );
     }
 
-    setPrototypeOf(shadowTarget, prototype) {
-    }
+    setPrototypeOf(shadowTarget, prototype) {}
 
     getOwnPropertyDescriptor(shadowTarget, key) {
-      const {
-        originalTarget,
-        membrane
-      } = this;
-      const {
-        valueObserved
-      } = membrane; // keys looked up via hasOwnProperty need to be reactive
+      const { originalTarget, membrane } = this;
+      const { valueObserved } = membrane; // keys looked up via hasOwnProperty need to be reactive
 
       valueObserved(originalTarget, key);
       let desc = getOwnPropertyDescriptor$1(originalTarget, key);
@@ -1147,10 +1170,9 @@
       // but access to the value or getter (if available) cannot be observed,
       // just like regular methods, in which case we just do nothing.
 
-
       desc = wrapDescriptor(membrane, desc, wrapReadOnlyValue);
 
-      if (hasOwnProperty$2.call(desc, 'set')) {
+      if (hasOwnProperty$2.call(desc, "set")) {
         desc.set = undefined; // readOnly membrane does not allow setters
       }
 
@@ -1167,15 +1189,12 @@
     }
 
     preventExtensions(shadowTarget) {
-
       return false;
     }
 
     defineProperty(shadowTarget, key, descriptor) {
-
       return false;
     }
-
   }
 
   function createShadowTarget(value) {
@@ -1198,8 +1217,7 @@
       return false;
     } // treat all non-object types, including undefined, as non-observable values
 
-
-    if (typeof value !== 'object') {
+    if (typeof value !== "object") {
       return false;
     }
 
@@ -1208,7 +1226,11 @@
     }
 
     const proto = getPrototypeOf$1(value);
-    return proto === ObjectDotPrototype || proto === null || getPrototypeOf$1(proto) === null;
+    return (
+      proto === ObjectDotPrototype ||
+      proto === null ||
+      getPrototypeOf$1(proto) === null
+    );
   }
 
   const defaultValueObserved = (obj, key) => {
@@ -1222,23 +1244,20 @@
   const defaultValueDistortion = value => value;
 
   function wrapDescriptor(membrane, descriptor, getValue) {
-    const {
-      set,
-      get
-    } = descriptor;
+    const { set, get } = descriptor;
 
-    if (hasOwnProperty$2.call(descriptor, 'value')) {
+    if (hasOwnProperty$2.call(descriptor, "value")) {
       descriptor.value = getValue(membrane, descriptor.value);
     } else {
       if (!isUndefined$1(get)) {
-        descriptor.get = function () {
+        descriptor.get = function() {
           // invoking the original getter with the original target
           return getValue(membrane, get.call(unwrap(this)));
         };
       }
 
       if (!isUndefined$1(set)) {
-        descriptor.set = function (value) {
+        descriptor.set = function(value) {
           // At this point we don't have a clear indication of whether
           // or not a valid mutation will occur, we don't have the key,
           // and we are not sure why and how they are invoking this setter.
@@ -1267,10 +1286,18 @@
           valueObserved,
           valueIsObservable
         } = options;
-        this.valueDistortion = isFunction$1(valueDistortion) ? valueDistortion : defaultValueDistortion;
-        this.valueMutated = isFunction$1(valueMutated) ? valueMutated : defaultValueMutated;
-        this.valueObserved = isFunction$1(valueObserved) ? valueObserved : defaultValueObserved;
-        this.valueIsObservable = isFunction$1(valueIsObservable) ? valueIsObservable : defaultValueIsObservable;
+        this.valueDistortion = isFunction$1(valueDistortion)
+          ? valueDistortion
+          : defaultValueDistortion;
+        this.valueMutated = isFunction$1(valueMutated)
+          ? valueMutated
+          : defaultValueMutated;
+        this.valueObserved = isFunction$1(valueObserved)
+          ? valueObserved
+          : defaultValueObserved;
+        this.valueIsObservable = isFunction$1(valueIsObservable)
+          ? valueIsObservable
+          : defaultValueIsObservable;
       }
     }
 
@@ -1304,9 +1331,7 @@
     }
 
     getReactiveState(value, distortedValue) {
-      const {
-        objectGraph
-      } = this;
+      const { objectGraph } = this;
       let reactiveState = objectGraph.get(distortedValue);
 
       if (reactiveState) {
@@ -1316,11 +1341,17 @@
       const membrane = this;
       reactiveState = {
         get reactive() {
-          const reactiveHandler = new ReactiveProxyHandler(membrane, distortedValue); // caching the reactive proxy after the first time it is accessed
+          const reactiveHandler = new ReactiveProxyHandler(
+            membrane,
+            distortedValue
+          ); // caching the reactive proxy after the first time it is accessed
 
-          const proxy = new Proxy(createShadowTarget(distortedValue), reactiveHandler);
+          const proxy = new Proxy(
+            createShadowTarget(distortedValue),
+            reactiveHandler
+          );
           registerProxy(proxy, value);
-          ObjectDefineProperty(this, 'reactive', {
+          ObjectDefineProperty(this, "reactive", {
             value: proxy
           });
           return proxy;
@@ -1329,19 +1360,20 @@
         get readOnly() {
           const readOnlyHandler = new ReadOnlyHandler(membrane, distortedValue); // caching the readOnly proxy after the first time it is accessed
 
-          const proxy = new Proxy(createShadowTarget(distortedValue), readOnlyHandler);
+          const proxy = new Proxy(
+            createShadowTarget(distortedValue),
+            readOnlyHandler
+          );
           registerProxy(proxy, value);
-          ObjectDefineProperty(this, 'readOnly', {
+          ObjectDefineProperty(this, "readOnly", {
             value: proxy
           });
           return proxy;
         }
-
       };
       objectGraph.set(distortedValue, reactiveState);
       return reactiveState;
     }
-
   }
   /** version: 0.26.0 */
 
@@ -1352,10 +1384,7 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
-  const {
-    create: create$1
-  } = Object;
+  const { create: create$1 } = Object;
   const {
     splice: ArraySplice$1,
     indexOf: ArrayIndexOf$1,
@@ -1447,11 +1476,8 @@
      * notifications about previously recorded access.
      */
 
-
     reset() {
-      const {
-        listeners
-      } = this;
+      const { listeners } = this;
       const len = listeners.length;
 
       if (len > 0) {
@@ -1465,7 +1491,6 @@
       }
     } // friend methods
 
-
     notify() {
       this.callback.call(undefined, this);
     }
@@ -1475,7 +1500,6 @@
 
       ArrayPush$2.call(this.listeners, reactiveObservers);
     }
-
   }
   /*
    * Copyright (c) 2018, salesforce.com, inc.
@@ -1483,7 +1507,6 @@
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
-
 
   function valueDistortion(value) {
     return value;
@@ -1498,7 +1521,6 @@
   // This means that across different elements, similar names can get the exact same
   // descriptor, so we can cache them:
 
-
   const cachedGetterByKey = create(null);
   const cachedSetterByKey = create(null);
 
@@ -1506,11 +1528,9 @@
     let fn = cachedGetterByKey[key];
 
     if (isUndefined(fn)) {
-      fn = cachedGetterByKey[key] = function () {
+      fn = cachedGetterByKey[key] = function() {
         const vm = getCustomElementVM(this);
-        const {
-          getHook
-        } = vm;
+        const { getHook } = vm;
         return getHook(vm.component, key);
       };
     }
@@ -1522,11 +1542,9 @@
     let fn = cachedSetterByKey[key];
 
     if (isUndefined(fn)) {
-      fn = cachedSetterByKey[key] = function (newValue) {
+      fn = cachedSetterByKey[key] = function(newValue) {
         const vm = getCustomElementVM(this);
-        const {
-          setHook
-        } = vm;
+        const { setHook } = vm;
         newValue = reactiveMembrane.getReadOnlyProxy(newValue);
         setHook(vm.component, key, newValue);
       };
@@ -1536,12 +1554,9 @@
   }
 
   function createMethodCaller(methodName) {
-    return function () {
+    return function() {
       const vm = getCustomElementVM(this);
-      const {
-        callHook,
-        component
-      } = vm;
+      const { callHook, component } = vm;
       const fn = component[methodName];
       return callHook(vm.component, fn, ArraySlice$1.call(arguments));
     };
@@ -1562,16 +1577,15 @@
     if (isFunction(SuperClass)) {
       HTMLBridgeElement = class extends SuperClass {};
     } else {
-      HTMLBridgeElement = function () {
+      HTMLBridgeElement = function() {
         // Bridge classes are not supposed to be instantiated directly in
         // browsers that do not support web components.
-        throw new TypeError('Illegal constructor');
+        throw new TypeError("Illegal constructor");
       }; // prototype inheritance dance
-
 
       setPrototypeOf(HTMLBridgeElement, SuperClass);
       setPrototypeOf(HTMLBridgeElement.prototype, SuperClass.prototype);
-      defineProperty(HTMLBridgeElement.prototype, 'constructor', {
+      defineProperty(HTMLBridgeElement.prototype, "constructor", {
         writable: true,
         configurable: true,
         value: HTMLBridgeElement
@@ -1590,7 +1604,6 @@
       };
     } // expose public methods as props on the new Element Bridge
 
-
     for (let i = 0, len = methods.length; i < len; i += 1) {
       const methodName = methods[i];
       descriptors[methodName] = {
@@ -1604,7 +1617,11 @@
     return HTMLBridgeElement;
   }
 
-  const BaseBridgeElement = HTMLBridgeElementFactory(HTMLElement, getOwnPropertyNames(HTMLElementOriginalDescriptors), []);
+  const BaseBridgeElement = HTMLBridgeElementFactory(
+    HTMLElement,
+    getOwnPropertyNames(HTMLElementOriginalDescriptors),
+    []
+  );
   freeze(BaseBridgeElement);
   seal(BaseBridgeElement.prototype);
   /*
@@ -1614,14 +1631,12 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-  const {
-    getHiddenField: getHiddenField$1
-  } = fields;
+  const { getHiddenField: getHiddenField$1 } = fields;
 
   function isLiveBindingProp(sel, key) {
     // For special whitelisted properties, we check against the actual property value on the DOM element instead of
     // relying on tracked property values.
-    return sel === 'input' && (key === 'value' || key === 'checked');
+    return sel === "input" && (key === "value" || key === "checked");
   }
 
   function update(oldVnode, vnode) {
@@ -1640,16 +1655,15 @@
     const elm = vnode.elm;
     const vm = getHiddenField$1(elm, ViewModelReflection);
     const isFirstPatch = isUndefined(oldProps);
-    const {
-      sel
-    } = vnode;
+    const { sel } = vnode;
 
     for (const key in props) {
       const cur = props[key];
 
-
-      if (isFirstPatch || cur !== (isLiveBindingProp(sel, key) ? elm[key] : oldProps[key])) {
-
+      if (
+        isFirstPatch ||
+        cur !== (isLiveBindingProp(sel, key) ? elm[key] : oldProps[key])
+      ) {
         elm[key] = cur;
       }
     }
@@ -1677,8 +1691,7 @@
       return EmptyObject;
     } // computed class names must be string
 
-
-    className = isString(className) ? className : className + '';
+    className = isString(className) ? className : className + "";
     let map = classNameToClassMap[className];
 
     if (map) {
@@ -1712,23 +1725,17 @@
   function updateClassAttribute(oldVnode, vnode) {
     const {
       elm,
-      data: {
-        className: newClass
-      }
+      data: { className: newClass }
     } = vnode;
     const {
-      data: {
-        className: oldClass
-      }
+      data: { className: oldClass }
     } = oldVnode;
 
     if (oldClass === newClass) {
       return;
     }
 
-    const {
-      classList
-    } = elm;
+    const { classList } = elm;
     const newClassMap = getMapFromClassName(newClass);
     const oldClassMap = getMapFromClassName(oldClass);
     let name;
@@ -1762,21 +1769,17 @@
    */
 
   function updateStyleAttribute(oldVnode, vnode) {
-    const {
-      style: newStyle
-    } = vnode.data;
+    const { style: newStyle } = vnode.data;
 
     if (oldVnode.data.style === newStyle) {
       return;
     }
 
     const elm = vnode.elm;
-    const {
-      style
-    } = elm;
+    const { style } = elm;
 
-    if (!isString(newStyle) || newStyle === '') {
-      removeAttribute.call(elm, 'style');
+    if (!isString(newStyle) || newStyle === "") {
+      removeAttribute.call(elm, "style");
     } else {
       style.cssText = newStyle;
     }
@@ -1801,18 +1804,14 @@
   function createClassAttribute(vnode) {
     const {
       elm,
-      data: {
-        classMap
-      }
+      data: { classMap }
     } = vnode;
 
     if (isUndefined(classMap)) {
       return;
     }
 
-    const {
-      classList
-    } = elm;
+    const { classList } = elm;
 
     for (const name in classMap) {
       classList.add(name);
@@ -1834,18 +1833,14 @@
   function createStyleAttribute(vnode) {
     const {
       elm,
-      data: {
-        styleMap
-      }
+      data: { styleMap }
     } = vnode;
 
     if (isUndefined(styleMap)) {
       return;
     }
 
-    const {
-      style
-    } = elm;
+    const { style } = elm;
 
     for (const name in styleMap) {
       style[name] = styleMap[name];
@@ -1862,15 +1857,11 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-  const {
-    getHiddenField: getHiddenField$2
-  } = fields;
+  const { getHiddenField: getHiddenField$2 } = fields;
 
   function createContext(vnode) {
     const {
-      data: {
-        context
-      }
+      data: { context }
     } = vnode;
 
     if (isUndefined(context)) {
@@ -1990,8 +1981,11 @@
       } else if (sameVnode(oldStartVnode, newEndVnode)) {
         // Vnode moved right
         patchVnode(oldStartVnode, newEndVnode);
-        newEndVnode.hook.move(oldStartVnode, parentElm, // TODO: resolve this, but using dot notation for nextSibling for now
-        oldEndVnode.elm.nextSibling);
+        newEndVnode.hook.move(
+          oldStartVnode,
+          parentElm, // TODO: resolve this, but using dot notation for nextSibling for now
+          oldEndVnode.elm.nextSibling
+        );
         oldStartVnode = oldCh[++oldStartIdx];
         newEndVnode = newCh[--newEndIdx];
       } else if (sameVnode(oldEndVnode, newStartVnode)) {
@@ -2010,7 +2004,11 @@
         if (isUndef(idxInOld)) {
           // New element
           newStartVnode.hook.create(newStartVnode);
-          newStartVnode.hook.insert(newStartVnode, parentElm, oldStartVnode.elm);
+          newStartVnode.hook.insert(
+            newStartVnode,
+            parentElm,
+            oldStartVnode.elm
+          );
           newStartVnode = newCh[++newStartIdx];
         } else {
           elmToMove = oldCh[idxInOld];
@@ -2019,7 +2017,11 @@
             if (elmToMove.sel !== newStartVnode.sel) {
               // New element
               newStartVnode.hook.create(newStartVnode);
-              newStartVnode.hook.insert(newStartVnode, parentElm, oldStartVnode.elm);
+              newStartVnode.hook.insert(
+                newStartVnode,
+                parentElm,
+                oldStartVnode.elm
+              );
             } else {
               patchVnode(elmToMove, newStartVnode);
               oldCh[idxInOld] = undefined;
@@ -2044,9 +2046,7 @@
   }
 
   function updateStaticChildren(parentElm, oldCh, newCh) {
-    const {
-      length
-    } = newCh;
+    const { length } = newCh;
 
     if (oldCh.length === 0) {
       // the old list is empty, we can directly insert anything new
@@ -2054,7 +2054,6 @@
       return;
     } // if the old list is not empty, the new list MUST have the same
     // amount of nodes, that's why we call this static children
-
 
     let referenceElm = null;
 
@@ -2096,12 +2095,9 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const noop = () => void 0;
 
-  const {
-    getHiddenField: getHiddenField$3
-  } = fields;
+  const { getHiddenField: getHiddenField$3 } = fields;
 
   function observeElementChildNodes(elm) {
     elm.$domManual$ = true;
@@ -2112,27 +2108,22 @@
   }
 
   function updateNodeHook(oldVnode, vnode) {
-    const {
-      text
-    } = vnode;
+    const { text } = vnode;
 
     if (oldVnode.text !== text) {
       /**
        * Compiler will never produce a text property that is not string
        */
 
-
       vnode.elm.nodeValue = text;
     }
   }
 
   function insertNodeHook(vnode, parentNode, referenceNode) {
-
     parentNode.insertBefore(vnode.elm, referenceNode);
   }
 
   function removeNodeHook(vnode, parentNode) {
-
     parentNode.removeChild(vnode.elm);
   }
 
@@ -2152,32 +2143,29 @@
 
   var LWCDOMMode;
 
-  (function (LWCDOMMode) {
+  (function(LWCDOMMode) {
     LWCDOMMode["manual"] = "manual";
   })(LWCDOMMode || (LWCDOMMode = {}));
 
   function fallbackElmHook(vnode) {
-    const {
-      owner
-    } = vnode;
+    const { owner } = vnode;
     const elm = vnode.elm;
 
     if (isTrue$1(useSyntheticShadow)) {
       const {
-        data: {
-          context
-        }
+        data: { context }
       } = vnode;
-      const {
-        shadowAttribute
-      } = owner.context;
+      const { shadowAttribute } = owner.context;
 
-      if (!isUndefined(context) && !isUndefined(context.lwc) && context.lwc.dom === LWCDOMMode.manual) {
+      if (
+        !isUndefined(context) &&
+        !isUndefined(context.lwc) &&
+        context.lwc.dom === LWCDOMMode.manual
+      ) {
         // this element will now accept any manual content inserted into it
         observeElementChildNodes(elm);
       } // when running in synthetic shadow mode, we need to set the shadowToken value
       // into each element from the template, so they can be styled accordingly.
-
 
       setElementShadowToken(elm, shadowAttribute);
     }
@@ -2199,22 +2187,25 @@
   }
 
   function updateChildrenHook(oldVnode, vnode) {
-    const {
-      children,
-      owner
-    } = vnode;
-    const fn = hasDynamicChildren(children) ? updateDynamicChildren : updateStaticChildren;
-    runWithBoundaryProtection(owner, owner.owner, noop, () => {
-      fn(vnode.elm, oldVnode.children, children);
-    }, noop);
+    const { children, owner } = vnode;
+    const fn = hasDynamicChildren(children)
+      ? updateDynamicChildren
+      : updateStaticChildren;
+    runWithBoundaryProtection(
+      owner,
+      owner.owner,
+      noop,
+      () => {
+        fn(vnode.elm, oldVnode.children, children);
+      },
+      noop
+    );
   }
 
   function allocateChildrenHook(vnode) {
     const elm = vnode.elm;
     const vm = getCustomElementVM(elm);
-    const {
-      children
-    } = vnode;
+    const { children } = vnode;
     vm.aChildren = children;
 
     if (isTrue$1(useSyntheticShadow)) {
@@ -2235,18 +2226,12 @@
       return;
     }
 
-    const {
-      mode,
-      ctor,
-      owner
-    } = vnode;
+    const { mode, ctor, owner } = vnode;
     const def = getComponentDef(ctor);
     setElementProto(elm, def);
 
     if (isTrue$1(useSyntheticShadow)) {
-      const {
-        shadowAttribute
-      } = owner.context; // when running in synthetic shadow mode, we need to set the shadowToken value
+      const { shadowAttribute } = owner.context; // when running in synthetic shadow mode, we need to set the shadowToken value
       // into each element from the template, so they can be styled accordingly.
 
       setElementShadowToken(elm, shadowAttribute);
@@ -2274,10 +2259,7 @@
   }
 
   function createChildrenHook(vnode) {
-    const {
-      elm,
-      children
-    } = vnode;
+    const { elm, children } = vnode;
 
     for (let j = 0; j < children.length; ++j) {
       const ch = children[j];
@@ -2309,10 +2291,7 @@
     // this method only needs to search on child vnodes from template
     // to trigger the remove hook just in case some of those children
     // are custom elements.
-    const {
-      children,
-      elm
-    } = vnode;
+    const { children, elm } = vnode;
 
     for (let j = 0, len = children.length; j < len; ++j) {
       const ch = children[j];
@@ -2328,7 +2307,6 @@
     // will take care of disconnecting any child VM attached to its shadow as well.
     removeVM(getCustomElementVM(vnode.elm));
   } // Using a WeakMap instead of a WeakSet because this one works in IE11 :(
-
 
   const FromIteration = new WeakMap(); // dynamic children means it was generated by an iteration
   // in a template, and will require a more complex diffing algo.
@@ -2347,17 +2325,10 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const Services = create(null);
 
   function invokeServiceHook(vm, cbs) {
-
-    const {
-      component,
-      data,
-      def,
-      context
-    } = vm;
+    const { component, data, def, context } = vm;
 
     for (let i = 0, len = cbs.length; i < len; ++i) {
       cbs[i].call(undefined, component, data, def, context);
@@ -2370,11 +2341,10 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const CHAR_S = 115;
   const CHAR_V = 118;
   const CHAR_G = 103;
-  const NamespaceAttributeForSVG = 'http://www.w3.org/2000/svg';
+  const NamespaceAttributeForSVG = "http://www.w3.org/2000/svg";
   const SymbolIterator = Symbol.iterator;
   const TextHook = {
     create: vnode => {
@@ -2403,18 +2373,14 @@
 
   const ElementHook = {
     create: vnode => {
-      const {
-        data,
-        sel,
-        clonedElement
-      } = vnode;
-      const {
-        ns
-      } = data; // TODO: issue #1364 - supporting the ability to inject a cloned StyleElement
+      const { data, sel, clonedElement } = vnode;
+      const { ns } = data; // TODO: issue #1364 - supporting the ability to inject a cloned StyleElement
       // via a vnode this is used for style tags for native shadow
 
       if (isUndefined(clonedElement)) {
-        vnode.elm = isUndefined(ns) ? document.createElement(sel) : document.createElementNS(ns, sel);
+        vnode.elm = isUndefined(ns)
+          ? document.createElement(sel)
+          : document.createElementNS(ns, sel);
       } else {
         vnode.elm = clonedElement;
       }
@@ -2442,9 +2408,7 @@
   };
   const CustomElementHook = {
     create: vnode => {
-      const {
-        sel
-      } = vnode;
+      const { sel } = vnode;
       vnode.elm = document.createElement(sel);
       linkNodeToShadow(vnode);
 
@@ -2482,16 +2446,11 @@
     vnode.elm.$shadowResolver$ = vnode.owner.cmpRoot.$shadowResolver$;
   } // TODO: #1136 - this should be done by the compiler, adding ns to every sub-element
 
-
   function addNS(vnode) {
-    const {
-      data,
-      children,
-      sel
-    } = vnode;
+    const { data, children, sel } = vnode;
     data.ns = NamespaceAttributeForSVG; // TODO: #1275 - review why `sel` equal `foreignObject` should get this `ns`
 
-    if (isArray$1(children) && sel !== 'foreignObject') {
+    if (isArray$1(children) && sel !== "foreignObject") {
       for (let j = 0, n = children.length; j < n; ++j) {
         const childNode = children[j];
 
@@ -2506,12 +2465,8 @@
     ArrayPush.call(vmBeingRendered.velements, vnode);
   } // [h]tml node
 
-
   function h(sel, data, children) {
-
-    const {
-      key
-    } = data;
+    const { key } = data;
     let text, elm;
     const vnode = {
       sel,
@@ -2524,13 +2479,17 @@
       owner: vmBeingRendered
     };
 
-    if (sel.length === 3 && StringCharCodeAt.call(sel, 0) === CHAR_S && StringCharCodeAt.call(sel, 1) === CHAR_V && StringCharCodeAt.call(sel, 2) === CHAR_G) {
+    if (
+      sel.length === 3 &&
+      StringCharCodeAt.call(sel, 0) === CHAR_S &&
+      StringCharCodeAt.call(sel, 1) === CHAR_V &&
+      StringCharCodeAt.call(sel, 2) === CHAR_G
+    ) {
       addNS(vnode);
     }
 
     return vnode;
   } // [t]ab[i]ndex function
-
 
   function ti(value) {
     // if value is greater than 0, we normalize to 0
@@ -2541,14 +2500,16 @@
     return shouldNormalize ? 0 : value;
   } // [s]lot element node
 
-
   function s(slotName, data, children, slotset) {
-
-    if (!isUndefined(slotset) && !isUndefined(slotset[slotName]) && slotset[slotName].length !== 0) {
+    if (
+      !isUndefined(slotset) &&
+      !isUndefined(slotset[slotName]) &&
+      slotset[slotName].length !== 0
+    ) {
       children = slotset[slotName];
     }
 
-    const vnode = h('slot', data, children);
+    const vnode = h("slot", data, children);
 
     if (useSyntheticShadow) {
       // TODO: #1276 - compiler should give us some sort of indicator when a vnodes collection is dynamic
@@ -2558,15 +2519,12 @@
     return vnode;
   } // [c]ustom element node
 
-
   function c(sel, Ctor, data, children) {
     if (isCircularModuleDependency(Ctor)) {
       Ctor = resolveCircularModuleDependency(Ctor);
     }
 
-    const {
-      key
-    } = data;
+    const { key } = data;
     let text, elm;
     children = arguments.length === 3 ? EmptyArray : children;
     const vnode = {
@@ -2579,12 +2537,11 @@
       hook: CustomElementHook,
       ctor: Ctor,
       owner: vmBeingRendered,
-      mode: 'open'
+      mode: "open"
     };
     addVNodeToChildLWC(vnode);
     return vnode;
   } // [i]terable node
-
 
   function i(iterable, factory) {
     const list = []; // TODO: #1276 - compiler should give us some sort of indicator when a vnodes collection is dynamic
@@ -2592,7 +2549,6 @@
     sc(list);
 
     if (isUndefined(iterable) || iterable === null) {
-
       return list;
     }
 
@@ -2600,10 +2556,7 @@
 
     let next = iterator.next();
     let j = 0;
-    let {
-      value,
-      done: last
-    } = next;
+    let { value, done: last } = next;
 
     while (last === false) {
       // implementing a look-back-approach because we need to know if the element is the last
@@ -2618,7 +2571,6 @@
         ArrayPush.call(list, vnode);
       }
 
-
       j += 1;
       value = next.value;
     }
@@ -2629,9 +2581,7 @@
    * [f]lattening
    */
 
-
   function f(items) {
-
     const len = items.length;
     const flattened = []; // TODO: #1276 - compiler should give us some sort of indicator when a vnodes collection is dynamic
 
@@ -2650,7 +2600,6 @@
     return flattened;
   } // [t]ext node
 
-
   function t(text) {
     const data = EmptyObject;
     let sel, children, key, elm;
@@ -2666,10 +2615,9 @@
     };
   } // comment node
 
-
   function p(text) {
     const data = EmptyObject;
-    const sel = '!';
+    const sel = "!";
     let children, key, elm;
     return {
       sel,
@@ -2683,7 +2631,6 @@
     };
   } // [d]ynamic value to produce a text vnode
 
-
   function d(value) {
     if (value == null) {
       return null;
@@ -2692,18 +2639,16 @@
     return t(value);
   } // [b]ind function
 
-
   function b(fn) {
     if (isNull(vmBeingRendered)) {
       throw new Error();
     }
 
     const vm = vmBeingRendered;
-    return function (event) {
+    return function(event) {
       invokeEventListener(vm, fn, vm.component, event);
     };
   } // [f]unction_[b]ind
-
 
   function fb(fn) {
     if (isNull(vmBeingRendered)) {
@@ -2711,11 +2656,10 @@
     }
 
     const vm = vmBeingRendered;
-    return function () {
+    return function() {
       return invokeComponentCallback(vm, fn, ArraySlice$1.call(arguments));
     };
   } // [l]ocator_[l]istener function
-
 
   function ll(originalHandler, id, context) {
     if (isNull(vmBeingRendered)) {
@@ -2728,18 +2672,14 @@
     const eventListener = b(originalHandler); // create a wrapping handler to resolve locator, and
     // then invoke the original handler.
 
-    return function (event) {
+    return function(event) {
       // located service for the locator metadata
       const {
-        context: {
-          locator
-        }
+        context: { locator }
       } = vm;
 
       if (!isUndefined(locator)) {
-        const {
-          locator: locatorService
-        } = Services;
+        const { locator: locatorService } = Services;
 
         if (locatorService) {
           locator.resolved = {
@@ -2755,28 +2695,22 @@
         }
       } // invoke original event listener via b()
 
-
       eventListener(event);
     };
   } // [k]ey function
 
-
   function k(compilerKey, obj) {
     switch (typeof obj) {
-      case 'number':
-      case 'string':
-        return compilerKey + ':' + obj;
-
+      case "number":
+      case "string":
+        return compilerKey + ":" + obj;
     }
   } // [g]lobal [id] function
 
-
   function gid(id) {
-    if (isUndefined(id) || id === '') {
-
+    if (isUndefined(id) || id === "") {
       return id;
     } // We remove attributes when they are assigned a value of null
-
 
     if (isNull(id)) {
       return null;
@@ -2785,18 +2719,14 @@
     return `${id}-${vmBeingRendered.idx}`;
   } // [f]ragment [id] function
 
-
   function fid(url) {
-    if (isUndefined(url) || url === '') {
-
+    if (isUndefined(url) || url === "") {
       return url;
     } // We remove attributes when they are assigned a value of null
-
 
     if (isNull(url)) {
       return null;
     } // Apply transformation only for fragment-only-urls
-
 
     if (/^#/.test(url)) {
       return `${url}-${vmBeingRendered.idx}`;
@@ -2810,7 +2740,6 @@
    * component reference to avoid diffing algo mismatches.
    */
 
-
   const DynamicImportedComponentMap = new Map();
   let dynamicImportedComponentCounter = 0;
   /**
@@ -2818,14 +2747,14 @@
    */
 
   function dc(sel, Ctor, data, children) {
-
-
     if (Ctor == null) {
       return null;
     }
 
     if (!isComponentConstructor(Ctor)) {
-      throw new Error(`Invalid LWC Constructor ${toString(Ctor)} for custom element <${sel}>.`);
+      throw new Error(
+        `Invalid LWC Constructor ${toString(Ctor)} for custom element <${sel}>.`
+      );
     }
 
     let idx = DynamicImportedComponentMap.get(Ctor);
@@ -2836,7 +2765,6 @@
     } // the new vnode key is a mix of idx and compiler key, this is required by the diffing algo
     // to identify different constructors as vnodes with different keys to avoid reusing the
     // element used for previous constructors.
-
 
     data.key = `dc:${idx}:${data.key}`;
     return c(sel, Ctor, data, children);
@@ -2855,37 +2783,35 @@
    *
    */
 
-
   function sc(vnodes) {
     // choose to use the snabbdom virtual dom diffing algo instead of our
     // static dummy algo.
-
 
     markAsDynamicChildren(vnodes);
     return vnodes;
   }
 
   var api =
-  /*#__PURE__*/
-  Object.freeze({
-    h: h,
-    ti: ti,
-    s: s,
-    c: c,
-    i: i,
-    f: f,
-    t: t,
-    p: p,
-    d: d,
-    b: b,
-    fb: fb,
-    ll: ll,
-    k: k,
-    gid: gid,
-    fid: fid,
-    dc: dc,
-    sc: sc
-  });
+    /*#__PURE__*/
+    Object.freeze({
+      h: h,
+      ti: ti,
+      s: s,
+      c: c,
+      i: i,
+      f: f,
+      t: t,
+      p: p,
+      d: d,
+      b: b,
+      fb: fb,
+      ll: ll,
+      k: k,
+      gid: gid,
+      fid: fid,
+      dc: dc,
+      sc: sc
+    });
   const signedTemplateSet = new Set();
 
   function defaultEmptyTemplate() {
@@ -2904,12 +2830,11 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const CachedStyleFragments = create(null);
 
   function createStyleElement(styleContent) {
-    const elm = document.createElement('style');
-    elm.type = 'text/css';
+    const elm = document.createElement("style");
+    elm.type = "text/css";
     elm.textContent = styleContent;
     return elm;
   }
@@ -2940,9 +2865,13 @@
   }
 
   function createStyleVNode(elm) {
-    const vnode = h('style', {
-      key: 'style'
-    }, EmptyArray); // TODO: issue #1364 - supporting the ability to inject a cloned StyleElement
+    const vnode = h(
+      "style",
+      {
+        key: "style"
+      },
+      EmptyArray
+    ); // TODO: issue #1364 - supporting the ability to inject a cloned StyleElement
     // forcing the diffing algo to use the cloned style for native shadow
 
     vnode.clonedElement = elm;
@@ -2952,12 +2881,8 @@
    * Reset the styling token applied to the host element.
    */
 
-
   function resetStyleAttributes(vm) {
-    const {
-      context,
-      elm
-    } = vm; // Remove the style attribute currently applied to the host element.
+    const { context, elm } = vm; // Remove the style attribute currently applied to the host element.
 
     const oldHostAttribute = context.hostAttribute;
 
@@ -2965,29 +2890,36 @@
       removeAttribute.call(elm, oldHostAttribute);
     } // Reset the scoping attributes associated to the context.
 
-
     context.hostAttribute = context.shadowAttribute = undefined;
   }
   /**
    * Apply/Update the styling token applied to the host element.
    */
 
-
   function applyStyleAttributes(vm, hostAttribute, shadowAttribute) {
-    const {
-      context,
-      elm
-    } = vm; // Remove the style attribute currently applied to the host element.
+    const { context, elm } = vm; // Remove the style attribute currently applied to the host element.
 
-    setAttribute.call(elm, hostAttribute, '');
+    setAttribute.call(elm, hostAttribute, "");
     context.hostAttribute = hostAttribute;
     context.shadowAttribute = shadowAttribute;
   }
 
-  function collectStylesheets(stylesheets, hostSelector, shadowSelector, isNative, aggregatorFn) {
+  function collectStylesheets(
+    stylesheets,
+    hostSelector,
+    shadowSelector,
+    isNative,
+    aggregatorFn
+  ) {
     forEach.call(stylesheets, sheet => {
       if (isArray$1(sheet)) {
-        collectStylesheets(sheet, hostSelector, shadowSelector, isNative, aggregatorFn);
+        collectStylesheets(
+          sheet,
+          hostSelector,
+          shadowSelector,
+          isNative,
+          aggregatorFn
+        );
       } else {
         aggregatorFn(sheet(hostSelector, shadowSelector, isNative));
       }
@@ -2995,21 +2927,32 @@
   }
 
   function evaluateCSS(vm, stylesheets, hostAttribute, shadowAttribute) {
-
     if (useSyntheticShadow) {
       const hostSelector = `[${hostAttribute}]`;
       const shadowSelector = `[${shadowAttribute}]`;
-      collectStylesheets(stylesheets, hostSelector, shadowSelector, false, textContent => {
-        insertGlobalStyle(textContent);
-      });
+      collectStylesheets(
+        stylesheets,
+        hostSelector,
+        shadowSelector,
+        false,
+        textContent => {
+          insertGlobalStyle(textContent);
+        }
+      );
       return null;
     } else {
       // Native shadow in place, we need to act accordingly by using the `:host` selector, and an
       // empty shadow selector since it is not really needed.
-      let buffer = '';
-      collectStylesheets(stylesheets, emptyString, emptyString, true, textContent => {
-        buffer += textContent;
-      });
+      let buffer = "";
+      collectStylesheets(
+        stylesheets,
+        emptyString,
+        emptyString,
+        true,
+        textContent => {
+          buffer += textContent;
+        }
+      );
       return createStyleVNode(getCachedStyleElement(buffer));
     }
   }
@@ -3020,17 +2963,10 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const EmptySlots = create(null);
 
   function evaluateTemplate(vm, html) {
-
-    const {
-      component,
-      context,
-      cmpSlots,
-      cmpTemplate
-    } = vm; // reset the cache memoizer for template when needed
+    const { component, context, cmpSlots, cmpTemplate } = vm; // reset the cache memoizer for template when needed
 
     if (html !== cmpTemplate) {
       // perf opt: do not reset the shadow root during the first rendering (there is nothing to reset)
@@ -3040,41 +2976,46 @@
         resetShadowRoot(vm);
       } // Check that the template was built by the compiler
 
-
       if (!isTemplateRegistered(html)) {
-        throw new TypeError(`Invalid template returned by the render() method on ${vm}. It must return an imported template (e.g.: \`import html from "./${vm.def.name}.html"\`), instead, it has returned: ${toString(html)}.`);
+        throw new TypeError(
+          `Invalid template returned by the render() method on ${vm}. It must return an imported template (e.g.: \`import html from "./${
+            vm.def.name
+          }.html"\`), instead, it has returned: ${toString(html)}.`
+        );
       }
 
       vm.cmpTemplate = html; // Populate context with template information
 
       context.tplCache = create(null);
       resetStyleAttributes(vm);
-      const {
-        stylesheets,
-        stylesheetTokens
-      } = html;
+      const { stylesheets, stylesheetTokens } = html;
 
       if (isUndefined(stylesheets) || stylesheets.length === 0) {
         context.styleVNode = null;
       } else if (!isUndefined(stylesheetTokens)) {
-        const {
-          hostAttribute,
-          shadowAttribute
-        } = stylesheetTokens;
+        const { hostAttribute, shadowAttribute } = stylesheetTokens;
         applyStyleAttributes(vm, hostAttribute, shadowAttribute); // Caching style vnode so it can be reused on every render
 
-        context.styleVNode = evaluateCSS(vm, stylesheets, hostAttribute, shadowAttribute);
+        context.styleVNode = evaluateCSS(
+          vm,
+          stylesheets,
+          hostAttribute,
+          shadowAttribute
+        );
       }
     }
     // to custom elements from the template.
 
-
     vm.velements = []; // invoke the selected template.
 
-    const vnodes = html.call(undefined, api, component, cmpSlots, context.tplCache);
-    const {
-      styleVNode
-    } = context;
+    const vnodes = html.call(
+      undefined,
+      api,
+      component,
+      cmpSlots,
+      context.tplCache
+    );
+    const { styleVNode } = context;
 
     if (!isNull(styleVNode)) {
       ArrayUnshift$1.call(vnodes, styleVNode);
@@ -3089,20 +3030,25 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   var GlobalMeasurementPhase;
 
-  (function (GlobalMeasurementPhase) {
+  (function(GlobalMeasurementPhase) {
     GlobalMeasurementPhase["REHYDRATE"] = "lwc-rehydrate";
     GlobalMeasurementPhase["HYDRATE"] = "lwc-hydrate";
   })(GlobalMeasurementPhase || (GlobalMeasurementPhase = {})); // Even if all the browser the engine supports implements the UserTiming API, we need to guard the measure APIs.
   // JSDom (used in Jest) for example doesn't implement the UserTiming APIs.
 
-
-  const isUserTimingSupported = typeof performance !== 'undefined' && typeof performance.mark === 'function' && typeof performance.clearMarks === 'function' && typeof performance.measure === 'function' && typeof performance.clearMeasures === 'function';
+  const isUserTimingSupported =
+    typeof performance !== "undefined" &&
+    typeof performance.mark === "function" &&
+    typeof performance.clearMarks === "function" &&
+    typeof performance.measure === "function" &&
+    typeof performance.clearMeasures === "function";
 
   function getMarkName(phase, vm) {
-    return `<${StringToLowerCase.call(tagNameGetter.call(vm.elm))} (${vm.idx})> - ${phase}`;
+    return `<${StringToLowerCase.call(tagNameGetter.call(vm.elm))} (${
+      vm.idx
+    })> - ${phase}`;
   }
 
   function start(markName) {
@@ -3122,34 +3068,38 @@
   }
   // the VM is used to create unique mark names at each level.
 
-  const startGlobalMeasure = !isUserTimingSupported ? noop$1 : function (phase, vm) {
-    const markName = isUndefined(vm) ? phase : getMarkName(phase, vm);
-    start(markName);
-  };
-  const endGlobalMeasure = !isUserTimingSupported ? noop$1 : function (phase, vm) {
-    const markName = isUndefined(vm) ? phase : getMarkName(phase, vm);
-    end(phase, markName);
-  };
+  const startGlobalMeasure = !isUserTimingSupported
+    ? noop$1
+    : function(phase, vm) {
+        const markName = isUndefined(vm) ? phase : getMarkName(phase, vm);
+        start(markName);
+      };
+  const endGlobalMeasure = !isUserTimingSupported
+    ? noop$1
+    : function(phase, vm) {
+        const markName = isUndefined(vm) ? phase : getMarkName(phase, vm);
+        end(phase, markName);
+      };
   let vmBeingRendered = null;
   let vmBeingConstructed = null;
 
   function isBeingConstructed(vm) {
-
     return vmBeingConstructed === vm;
   }
 
   function invokeComponentCallback(vm, fn, args) {
-    const {
-      component,
-      callHook,
-      context,
-      owner
-    } = vm;
+    const { component, callHook, context, owner } = vm;
     let result;
-    runWithBoundaryProtection(vm, owner, () => {}, () => {
-      // job
-      result = callHook(component, fn, args);
-    }, () => {});
+    runWithBoundaryProtection(
+      vm,
+      owner,
+      () => {},
+      () => {
+        // job
+        result = callHook(component, fn, args);
+      },
+      () => {}
+    );
     return result;
   }
 
@@ -3173,12 +3123,13 @@
       // invoked by accessing the component on the vm.
 
       if (vmBeingConstructed.component !== result) {
-        throw new TypeError('Invalid component constructor, the class should extend LightningElement.');
+        throw new TypeError(
+          "Invalid component constructor, the class should extend LightningElement."
+        );
       }
     } catch (e) {
       error = Object(e);
     } finally {
-
       vmBeingConstructed = vmBeingConstructedInception;
 
       if (!isUndefined(error)) {
@@ -3191,9 +3142,7 @@
 
   function invokeComponentRenderMethod(vm) {
     const {
-      def: {
-        render
-      },
+      def: { render },
       callHook,
       component,
       context,
@@ -3202,34 +3151,45 @@
     const vmBeingRenderedInception = vmBeingRendered;
     vmBeingRendered = vm;
     let result;
-    runWithBoundaryProtection(vm, owner, () => {
-      vmBeingRendered = vm;
-    }, () => {
-      // job
-      vm.tro.observe(() => {
-        const html = callHook(component, render);
-        result = evaluateTemplate(vm, html);
-      });
-    }, () => {
-      vmBeingRendered = vmBeingRenderedInception;
-    });
+    runWithBoundaryProtection(
+      vm,
+      owner,
+      () => {
+        vmBeingRendered = vm;
+      },
+      () => {
+        // job
+        vm.tro.observe(() => {
+          const html = callHook(component, render);
+          result = evaluateTemplate(vm, html);
+        });
+      },
+      () => {
+        vmBeingRendered = vmBeingRenderedInception;
+      }
+    );
     return result || [];
   }
 
   function invokeEventListener(vm, fn, thisValue, event) {
-    const {
-      callHook,
+    const { callHook, owner, context } = vm;
+    runWithBoundaryProtection(
+      vm,
       owner,
-      context
-    } = vm;
-    runWithBoundaryProtection(vm, owner, () => {}, () => {
-      // job
-      if ("production" !== 'production') {
-        assert.isTrue(isFunction(fn), `Invalid event handler for event '${event.type}' on ${vm}.`);
-      }
+      () => {},
+      () => {
+        // job
+        if ("production" !== "production") {
+          assert.isTrue(
+            isFunction(fn),
+            `Invalid event handler for event '${event.type}' on ${vm}.`
+          );
+        }
 
-      callHook(thisValue, fn, [event]);
-    }, () => {});
+        callHook(thisValue, fn, [event]);
+      },
+      () => {}
+    );
   }
   /*
    * Copyright (c) 2018, salesforce.com, inc.
@@ -3238,17 +3198,13 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const signedComponentToMetaMap = new Map();
   /**
    * INTERNAL: This function can only be invoked by compiled code. The compiler
    * will prevent this function from being imported by userland code.
    */
 
-  function registerComponent(Ctor, {
-    name,
-    tmpl: template
-  }) {
+  function registerComponent(Ctor, { name, tmpl: template }) {
     signedComponentToMetaMap.set(Ctor, {
       name,
       template
@@ -3263,29 +3219,23 @@
   }
 
   function createComponent(uninitializedVm, Ctor) {
-
-
     invokeComponentConstructor(uninitializedVm, Ctor);
     const initializedVm = uninitializedVm;
 
     if (isUndefined(initializedVm.component)) {
-      throw new ReferenceError(`Invalid construction for ${Ctor}, you must extend LightningElement.`);
+      throw new ReferenceError(
+        `Invalid construction for ${Ctor}, you must extend LightningElement.`
+      );
     }
   }
 
   function linkComponent(vm) {
-
-
     const {
-      def: {
-        wire
-      }
+      def: { wire }
     } = vm;
 
     if (wire) {
-      const {
-        wiring
-      } = Services;
+      const { wiring } = Services;
 
       if (wiring) {
         invokeServiceHook(vm, wiring);
@@ -3295,10 +3245,7 @@
 
   function getTemplateReactiveObserver(vm) {
     return new ReactiveObserver(() => {
-
-      const {
-        isDirty
-      } = vm;
+      const { isDirty } = vm;
 
       if (isFalse$1(isDirty)) {
         markComponentAsDirty(vm);
@@ -3308,7 +3255,6 @@
   }
 
   function renderComponent(vm) {
-
     vm.tro.reset();
     const vnodes = invokeComponentRenderMethod(vm);
     vm.isDirty = false;
@@ -3318,14 +3264,12 @@
   }
 
   function markComponentAsDirty(vm) {
-
     vm.isDirty = true;
   }
 
   const cmpEventListenerMap = new WeakMap();
 
   function getWrappedComponentsListener(vm, listener) {
-
     if (!isFunction(listener)) {
       throw new TypeError(); // avoiding problems with non-valid listeners
     }
@@ -3333,7 +3277,7 @@
     let wrappedListener = cmpEventListenerMap.get(listener);
 
     if (isUndefined(wrappedListener)) {
-      wrappedListener = function (event) {
+      wrappedListener = function(event) {
         invokeEventListener(vm, listener, undefined, event);
       };
 
@@ -3349,12 +3293,15 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   function createObservedFieldsDescriptorMap(fields) {
-    return ArrayReduce.call(fields, (acc, field) => {
-      acc[field] = createObservedFieldPropertyDescriptor(field);
-      return acc;
-    }, {});
+    return ArrayReduce.call(
+      fields,
+      (acc, field) => {
+        acc[field] = createObservedFieldPropertyDescriptor(field);
+        return acc;
+      },
+      {}
+    );
   }
 
   function createObservedFieldPropertyDescriptor(key) {
@@ -3389,14 +3336,20 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
+  const ShadowRootHostGetter = getOwnPropertyDescriptor(
+    ShadowRoot.prototype,
+    "host"
+  ).get;
+  const ShadowRootInnerHTMLSetter = getOwnPropertyDescriptor(
+    ShadowRoot.prototype,
+    "innerHTML"
+  ).set;
+  const dispatchEvent =
+    "EventTarget" in window
+      ? EventTarget.prototype.dispatchEvent
+      : Node.prototype.dispatchEvent; // IE11
 
-  const ShadowRootHostGetter = getOwnPropertyDescriptor(ShadowRoot.prototype, 'host').get;
-  const ShadowRootInnerHTMLSetter = getOwnPropertyDescriptor(ShadowRoot.prototype, 'innerHTML').set;
-  const dispatchEvent = 'EventTarget' in window ? EventTarget.prototype.dispatchEvent : Node.prototype.dispatchEvent; // IE11
-
-  const {
-    setHiddenField: setHiddenField$1
-  } = fields;
+  const { setHiddenField: setHiddenField$1 } = fields;
   /**
    * This operation is called with a descriptor of an standard html property
    * that a Custom Element can support (including AOM properties), which
@@ -3405,20 +3358,13 @@
    */
 
   function createBridgeToElementDescriptor(propName, descriptor) {
-    const {
-      get,
-      set,
-      enumerable,
-      configurable
-    } = descriptor;
+    const { get, set, enumerable, configurable } = descriptor;
 
     if (!isFunction(get)) {
-
       throw new TypeError();
     }
 
     if (!isFunction(set)) {
-
       throw new TypeError();
     }
 
@@ -3430,7 +3376,6 @@
         const vm = getComponentVM(this);
 
         if (isBeingConstructed(vm)) {
-
           return;
         }
 
@@ -3452,7 +3397,6 @@
 
         return set.call(vm.elm, newValue);
       }
-
     };
   }
 
@@ -3464,7 +3408,6 @@
    * Some elements directly extends this class, others implement it via inheritance.
    **/
 
-
   function BaseLightningElementConstructor() {
     // This should be as performant as possible, while any initialization should be done lazily
     if (isNull(vmBeingConstructed)) {
@@ -3475,9 +3418,7 @@
     const {
       elm,
       mode,
-      def: {
-        ctor
-      }
+      def: { ctor }
     } = vm;
     const component = this;
     vm.component = component;
@@ -3487,16 +3428,11 @@
     // we don't want folks to know about it just yet.
 
     if (arguments.length === 1) {
-      const {
-        callHook,
-        setHook,
-        getHook
-      } = arguments[0];
+      const { callHook, setHook, getHook } = arguments[0];
       vm.callHook = callHook;
       vm.setHook = setHook;
       vm.getHook = getHook;
     } // attaching the shadowRoot
-
 
     const shadowRootOptions = {
       mode,
@@ -3512,7 +3448,6 @@
 
     return this;
   } // HTML Element - The Good Parts
-
 
   BaseLightningElementConstructor.prototype = {
     constructor: BaseLightningElementConstructor,
@@ -3597,9 +3532,7 @@
     querySelector(selectors) {
       const vm = getComponentVM(this);
 
-      const {
-        elm
-      } = vm;
+      const { elm } = vm;
       return elm.querySelector(selectors);
     },
 
@@ -3612,9 +3545,7 @@
     querySelectorAll(selectors) {
       const vm = getComponentVM(this);
 
-      const {
-        elm
-      } = vm;
+      const { elm } = vm;
       return elm.querySelectorAll(selectors);
     },
 
@@ -3625,9 +3556,7 @@
     getElementsByTagName(tagNameOrWildCard) {
       const vm = getComponentVM(this);
 
-      const {
-        elm
-      } = vm;
+      const { elm } = vm;
       return elm.getElementsByTagName(tagNameOrWildCard);
     },
 
@@ -3638,14 +3567,11 @@
     getElementsByClassName(names) {
       const vm = getComponentVM(this);
 
-      const {
-        elm
-      } = vm;
+      const { elm } = vm;
       return elm.getElementsByClassName(names);
     },
 
     get classList() {
-
       return getLinkedElement(this).classList;
     },
 
@@ -3671,15 +3597,21 @@
 
       return `[object ${vm.def.name}]`;
     }
-
   }; // Typescript is inferring the wrong function type for this particular
   // overloaded method: https://github.com/Microsoft/TypeScript/issues/27972
   // @ts-ignore type-mismatch
 
-  const baseDescriptors = ArrayReduce.call(getOwnPropertyNames(HTMLElementOriginalDescriptors), (descriptors, propName) => {
-    descriptors[propName] = createBridgeToElementDescriptor(propName, HTMLElementOriginalDescriptors[propName]);
-    return descriptors;
-  }, create(null));
+  const baseDescriptors = ArrayReduce.call(
+    getOwnPropertyNames(HTMLElementOriginalDescriptors),
+    (descriptors, propName) => {
+      descriptors[propName] = createBridgeToElementDescriptor(
+        propName,
+        HTMLElementOriginalDescriptors[propName]
+      );
+      return descriptors;
+    },
+    create(null)
+  );
   defineProperties(BaseLightningElementConstructor.prototype, baseDescriptors);
 
   freeze(BaseLightningElementConstructor);
@@ -3700,7 +3632,6 @@
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
-
 
   const {
     assign: assign$1,
@@ -3730,8 +3661,7 @@
    * are not supported. Note that we can't use typeof since it will fail when transpiling.
    */
 
-
-  const hasNativeSymbolsSupport$1 = Symbol('x').toString() === 'Symbol(x)';
+  const hasNativeSymbolsSupport$1 = Symbol("x").toString() === "Symbol(x)";
   /** version: 1.1.0 */
 
   /*
@@ -3749,7 +3679,6 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const signedDecoratorToMetaMap = new Map();
 
   function getDecoratorsRegisteredMeta(Ctor) {
@@ -3762,23 +3691,22 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const CtorToDefMap = new WeakMap();
 
   function getCtorProto(Ctor, subclassComponentName) {
     let proto = getPrototypeOf(Ctor);
 
     if (isNull(proto)) {
-      throw new ReferenceError(`Invalid prototype chain for ${subclassComponentName}, you must extend LightningElement.`);
+      throw new ReferenceError(
+        `Invalid prototype chain for ${subclassComponentName}, you must extend LightningElement.`
+      );
     } // covering the cases where the ref is circular in AMD
-
 
     if (isCircularModuleDependency(proto)) {
       const p = resolveCircularModuleDependency(proto);
       // of our Base class without having to leak it to user-land. If the circular function returns
       // itself, that's the signal that we have hit the end of the proto chain, which must always
       // be base.
-
 
       proto = p === proto ? BaseLightningElement : p;
     }
@@ -3787,13 +3715,8 @@
   }
 
   function createComponentDef(Ctor, meta, subclassComponentName) {
-
-    const {
-      name
-    } = meta;
-    let {
-      template
-    } = meta;
+    const { name } = meta;
+    let { template } = meta;
     const decoratorsMeta = getDecoratorsRegisteredMeta(Ctor);
     let props = {};
     let methods = {};
@@ -3818,17 +3741,28 @@
       render
     } = proto;
     const superProto = getCtorProto(Ctor, subclassComponentName);
-    const superDef = superProto !== BaseLightningElement ? getComponentDef(superProto, subclassComponentName) : null;
+    const superDef =
+      superProto !== BaseLightningElement
+        ? getComponentDef(superProto, subclassComponentName)
+        : null;
     const SuperBridge = isNull(superDef) ? BaseBridgeElement : superDef.bridge;
-    const bridge = HTMLBridgeElementFactory(SuperBridge, getOwnPropertyNames(props), getOwnPropertyNames(methods));
+    const bridge = HTMLBridgeElementFactory(
+      SuperBridge,
+      getOwnPropertyNames(props),
+      getOwnPropertyNames(methods)
+    );
 
     if (!isNull(superDef)) {
       props = assign(create(null), superDef.props, props);
       methods = assign(create(null), superDef.methods, methods);
-      wire = superDef.wire || wire ? assign(create(null), superDef.wire, wire) : undefined;
+      wire =
+        superDef.wire || wire
+          ? assign(create(null), superDef.wire, wire)
+          : undefined;
       track = assign(create(null), superDef.track, track);
       connectedCallback = connectedCallback || superDef.connectedCallback;
-      disconnectedCallback = disconnectedCallback || superDef.disconnectedCallback;
+      disconnectedCallback =
+        disconnectedCallback || superDef.disconnectedCallback;
       renderedCallback = renderedCallback || superDef.renderedCallback;
       errorCallback = errorCallback || superDef.errorCallback;
       render = render || superDef.render;
@@ -3869,19 +3803,16 @@
    * constructors. This API is subject to change or being removed.
    */
 
-
   function isComponentConstructor(ctor) {
     if (!isFunction(ctor)) {
       return false;
     } // Fast path: LightningElement is part of the prototype chain of the constructor.
-
 
     if (ctor.prototype instanceof BaseLightningElement) {
       return true;
     } // Slow path: LightningElement is not part of the prototype chain of the constructor, we need
     // climb up the constructor prototype chain to check in case there are circular dependencies
     // to resolve.
-
 
     let current = ctor;
 
@@ -3902,7 +3833,6 @@
       }
     } while (!isNull(current) && (current = getPrototypeOf(current))); // Finally return false if the LightningElement is not part of the prototype chain.
 
-
     return false;
   }
   /**
@@ -3910,13 +3840,14 @@
    * component metadata. This API is subject to change or being removed.
    */
 
-
   function getComponentDef(Ctor, subclassComponentName) {
     let def = CtorToDefMap.get(Ctor);
 
     if (isUndefined(def)) {
       if (!isComponentConstructor(Ctor)) {
-        throw new TypeError(`${Ctor} is not a valid component, or does not extends LightningElement from "lwc". You probably forgot to add the extend clause on the class declaration.`);
+        throw new TypeError(
+          `${Ctor} is not a valid component, or does not extends LightningElement from "lwc". You probably forgot to add the extend clause on the class declaration.`
+        );
       }
 
       let meta = getComponentRegisteredMeta(Ctor);
@@ -3937,22 +3868,24 @@
   }
   // No DOM Patching occurs here
 
-
   function setElementProto(elm, def) {
     setPrototypeOf(elm, def.bridge.prototype);
   } // overloaded method: https://github.com/Microsoft/TypeScript/issues/27972
   // @ts-ignore type-mismatch
 
-
-  const HTML_PROPS = ArrayReduce.call(getOwnPropertyNames(HTMLElementOriginalDescriptors), (props, propName) => {
-    const attrName = getAttrNameFromPropName(propName);
-    props[propName] = {
-      config: 3,
-      type: 'any',
-      attr: attrName
-    };
-    return props;
-  }, create(null));
+  const HTML_PROPS = ArrayReduce.call(
+    getOwnPropertyNames(HTMLElementOriginalDescriptors),
+    (props, propName) => {
+      const attrName = getAttrNameFromPropName(propName);
+      props[propName] = {
+        config: 3,
+        type: "any",
+        attr: attrName
+      };
+      return props;
+    },
+    create(null)
+  );
   /*
    * Copyright (c) 2018, salesforce.com, inc.
    * All rights reserved.
@@ -3966,8 +3899,16 @@
     removeChild,
     replaceChild
   } = Node.prototype;
-  const parentNodeGetter = getOwnPropertyDescriptor(Node.prototype, 'parentNode').get;
-  const parentElementGetter = hasOwnProperty.call(Node.prototype, 'parentElement') ? getOwnPropertyDescriptor(Node.prototype, 'parentElement').get : getOwnPropertyDescriptor(HTMLElement.prototype, 'parentElement').get; // IE11
+  const parentNodeGetter = getOwnPropertyDescriptor(
+    Node.prototype,
+    "parentNode"
+  ).get;
+  const parentElementGetter = hasOwnProperty.call(
+    Node.prototype,
+    "parentElement"
+  )
+    ? getOwnPropertyDescriptor(Node.prototype, "parentElement").get
+    : getOwnPropertyDescriptor(HTMLElement.prototype, "parentElement").get; // IE11
 
   /*
    * Copyright (c) 2018, salesforce.com, inc.
@@ -3978,10 +3919,10 @@
 
   var VMState;
 
-  (function (VMState) {
-    VMState[VMState["created"] = 0] = "created";
-    VMState[VMState["connected"] = 1] = "connected";
-    VMState[VMState["disconnected"] = 2] = "disconnected";
+  (function(VMState) {
+    VMState[(VMState["created"] = 0)] = "created";
+    VMState[(VMState["connected"] = 1)] = "connected";
+    VMState[(VMState["disconnected"] = 2)] = "disconnected";
   })(VMState || (VMState = {}));
 
   let idx = 0;
@@ -3999,35 +3940,25 @@
   }
 
   function rerenderVM(vm) {
-
     rehydrate(vm);
   }
 
   function appendRootVM(vm) {
-
     runConnectedCallback(vm);
     rehydrate(vm);
   }
 
   function appendVM(vm) {
-
     runConnectedCallback(vm);
     rehydrate(vm);
   } // just in case the component comes back, with this we guarantee re-rendering it
   // while preventing any attempt to rehydration until after reinsertion.
 
-
   function resetComponentStateWhenRemoved(vm) {
-
-    const {
-      state
-    } = vm;
+    const { state } = vm;
 
     if (state !== VMState.disconnected) {
-      const {
-        oar,
-        tro
-      } = vm; // Making sure that any observing record will not trigger the rehydrated on this vm
+      const { oar, tro } = vm; // Making sure that any observing record will not trigger the rehydrated on this vm
 
       tro.reset(); // Making sure that any observing accessor record will not trigger the setter to be reinvoked
 
@@ -4043,26 +3974,17 @@
   } // this method is triggered by the diffing algo only when a vnode from the
   // old vnode.children is removed from the DOM.
 
-
   function removeVM(vm) {
-
     resetComponentStateWhenRemoved(vm);
   } // this method is triggered by the removal of a root element from the DOM.
 
-
   function removeRootVM(vm) {
-
     resetComponentStateWhenRemoved(vm);
   }
 
   function createVM(elm, Ctor, options) {
-
     const def = getComponentDef(Ctor);
-    const {
-      isRoot,
-      mode,
-      owner
-    } = options;
+    const { isRoot, mode, owner } = options;
     idx += 1;
     const uninitializedVm = {
       // component creation index is defined once, and never reset, it can
@@ -4095,7 +4017,6 @@
       oar: undefined
     };
 
-
     createComponent(uninitializedVm, Ctor); // link component to the wire service
 
     const initializedVm = uninitializedVm;
@@ -4103,7 +4024,6 @@
   }
 
   function rehydrate(vm) {
-
     if (isTrue$1(vm.isDirty)) {
       const children = renderComponent(vm);
       patchShadowRoot(vm, children);
@@ -4111,24 +4031,26 @@
   }
 
   function patchShadowRoot(vm, newCh) {
-
-    const {
-      cmpRoot,
-      children: oldCh
-    } = vm;
+    const { cmpRoot, children: oldCh } = vm;
     vm.children = newCh; // caching the new children collection
 
     if (newCh.length > 0 || oldCh.length > 0) {
       // patch function mutates vnodes by adding the element reference,
       // however, if patching fails it contains partial changes.
       if (oldCh !== newCh) {
-        const fn = hasDynamicChildren(newCh) ? updateDynamicChildren : updateStaticChildren;
-        runWithBoundaryProtection(vm, vm, () => {
-        }, () => {
-          // job
-          fn(cmpRoot, oldCh, newCh);
-        }, () => {
-        });
+        const fn = hasDynamicChildren(newCh)
+          ? updateDynamicChildren
+          : updateStaticChildren;
+        runWithBoundaryProtection(
+          vm,
+          vm,
+          () => {},
+          () => {
+            // job
+            fn(cmpRoot, oldCh, newCh);
+          },
+          () => {}
+        );
       }
     }
 
@@ -4142,21 +4064,15 @@
   }
 
   function runRenderedCallback(vm) {
-
-    const {
-      rendered
-    } = Services;
+    const { rendered } = Services;
 
     if (rendered) {
       invokeServiceHook(vm, rendered);
     }
 
-    const {
-      renderedCallback
-    } = vm.def;
+    const { renderedCallback } = vm.def;
 
     if (!isUndefined(renderedCallback)) {
-
       invokeComponentCallback(vm, renderedCallback);
     }
   }
@@ -4184,7 +4100,6 @@
           ArrayUnshift$1.apply(rehydrateQueue, ArraySlice$1.call(vms, i + 1));
         } // we need to end the measure before throwing.
 
-
         endGlobalMeasure(GlobalMeasurementPhase.REHYDRATE); // re-throwing the original error will break the current tick, but since the next tick is
         // already scheduled, it should continue patching the rest.
 
@@ -4196,10 +4111,7 @@
   }
 
   function runConnectedCallback(vm) {
-
-    const {
-      state
-    } = vm;
+    const { state } = vm;
 
     if (state === VMState.connected) {
       return; // nothing to do since it was already connected
@@ -4207,26 +4119,20 @@
 
     vm.state = VMState.connected; // reporting connection
 
-    const {
-      connected
-    } = Services;
+    const { connected } = Services;
 
     if (connected) {
       invokeServiceHook(vm, connected);
     }
 
-    const {
-      connectedCallback
-    } = vm.def;
+    const { connectedCallback } = vm.def;
 
     if (!isUndefined(connectedCallback)) {
-
       invokeComponentCallback(vm, connectedCallback);
     }
   }
 
   function runDisconnectedCallback(vm) {
-
     if (isFalse$1(vm.isDirty)) {
       // this guarantees that if the component is reused/reinserted,
       // it will be re-rendered because we are disconnecting the reactivity
@@ -4237,29 +4143,21 @@
 
     vm.state = VMState.disconnected; // reporting disconnection
 
-    const {
-      disconnected
-    } = Services;
+    const { disconnected } = Services;
 
     if (disconnected) {
       invokeServiceHook(vm, disconnected);
     }
 
-    const {
-      disconnectedCallback
-    } = vm.def;
+    const { disconnectedCallback } = vm.def;
 
     if (!isUndefined(disconnectedCallback)) {
-
       invokeComponentCallback(vm, disconnectedCallback);
     }
   }
 
   function runShadowChildNodesDisconnectedCallback(vm) {
-
-    const {
-      velements: vCustomElementCollection
-    } = vm; // reporting disconnection for every child in inverse order since they are inserted in reserved order
+    const { velements: vCustomElementCollection } = vm; // reporting disconnection for every child in inverse order since they are inserted in reserved order
 
     for (let i = vCustomElementCollection.length - 1; i >= 0; i -= 1) {
       const elm = vCustomElementCollection[i].elm; // There are two cases where the element could be undefined:
@@ -4277,10 +4175,7 @@
   }
 
   function runLightChildNodesDisconnectedCallback(vm) {
-
-    const {
-      aChildren: adoptedChildren
-    } = vm;
+    const { aChildren: adoptedChildren } = vm;
     recursivelyDisconnectChildren(adoptedChildren);
   }
   /**
@@ -4291,12 +4186,15 @@
    * defined on its shadow.
    */
 
-
   function recursivelyDisconnectChildren(vnodes) {
     for (let i = 0, len = vnodes.length; i < len; i += 1) {
       const vnode = vnodes[i];
 
-      if (!isNull(vnode) && isArray$1(vnode.children) && !isUndefined(vnode.elm)) {
+      if (
+        !isNull(vnode) &&
+        isArray$1(vnode.children) &&
+        !isUndefined(vnode.elm)
+      ) {
         // vnode is a VElement with children
         if (isUndefined(vnode.ctor)) {
           // it is a VElement, just keep looking (recursively)
@@ -4312,17 +4210,14 @@
   // of an error, in which case the children VNodes might not be representing the current
   // state of the DOM
 
-
   function resetShadowRoot(vm) {
-
     vm.children = EmptyArray;
-    ShadowRootInnerHTMLSetter.call(vm.cmpRoot, ''); // disconnecting any known custom element inside the shadow of the this vm
+    ShadowRootInnerHTMLSetter.call(vm.cmpRoot, ""); // disconnecting any known custom element inside the shadow of the this vm
 
     runShadowChildNodesDisconnectedCallback(vm);
   }
 
   function scheduleRehydration(vm) {
-
     if (!vm.isScheduled) {
       vm.isScheduled = true;
 
@@ -4335,16 +4230,11 @@
   }
 
   function getErrorBoundaryVMFromOwnElement(vm) {
-
-    const {
-      elm
-    } = vm;
+    const { elm } = vm;
     return getErrorBoundaryVM(elm);
   }
 
-  const {
-    getHiddenField: getHiddenField$5
-  } = fields;
+  const { getHiddenField: getHiddenField$5 } = fields;
 
   function getErrorBoundaryVM(startingElement) {
     let elm = startingElement;
@@ -4368,7 +4258,6 @@
    * @return {string} The component stack for errors.
    */
 
-
   function getErrorComponentStack(startingElement) {
     const wcStack = [];
     let elm = startingElement;
@@ -4378,20 +4267,22 @@
 
       if (!isUndefined(currentVm)) {
         const tagName = tagNameGetter.call(elm);
-        const is = elm.getAttribute('is');
-        ArrayPush.call(wcStack, `<${StringToLowerCase.call(tagName)}${is ? ' is="${is}' : ''}>`);
+        const is = elm.getAttribute("is");
+        ArrayPush.call(
+          wcStack,
+          `<${StringToLowerCase.call(tagName)}${is ? ' is="${is}' : ""}>`
+        );
       }
 
       elm = getParentOrHostElement(elm);
     } while (!isNull(elm));
 
-    return wcStack.reverse().join('\n\t');
+    return wcStack.reverse().join("\n\t");
   }
   /**
    * Finds the parent of the specified element. If shadow DOM is enabled, finds
    * the host of the shadow root to escape the shadow boundary.
    */
-
 
   function getParentOrHostElement(elm) {
     const parentElement = parentElementGetter.call(elm); // If parentElement is a shadow root, find the host instead
@@ -4402,32 +4293,26 @@
    * Finds the host element, if it exists.
    */
 
-
   function getHostElement(elm) {
-
     const parentNode = parentNodeGetter.call(elm);
-    return parentNode instanceof ShadowRoot ? ShadowRootHostGetter.call(parentNode) : null;
+    return parentNode instanceof ShadowRoot
+      ? ShadowRootHostGetter.call(parentNode)
+      : null;
   }
 
   function getCustomElementVM(elm) {
-
     return getHiddenField$5(elm, ViewModelReflection);
   }
 
   function getComponentVM(component) {
-
     return getHiddenField$5(component, ViewModelReflection);
   }
   // NOTE: we should probably more this routine to the synthetic shadow folder
   // and get the allocation to be cached by in the elm instead of in the VM
 
-
   function allocateInSlot(vm, children) {
-
-    const {
-      cmpSlots: oldSlots
-    } = vm;
-    const cmpSlots = vm.cmpSlots = create(null);
+    const { cmpSlots: oldSlots } = vm;
+    const cmpSlots = (vm.cmpSlots = create(null));
 
     for (let i = 0, len = children.length; i < len; i += 1) {
       const vnode = children[i];
@@ -4436,11 +4321,9 @@
         continue;
       }
 
-      const {
-        data
-      } = vnode;
-      const slotName = data.attrs && data.attrs.slot || '';
-      const vnodes = cmpSlots[slotName] = cmpSlots[slotName] || []; // re-keying the vnodes is necessary to avoid conflicts with default content for the slot
+      const { data } = vnode;
+      const slotName = (data.attrs && data.attrs.slot) || "";
+      const vnodes = (cmpSlots[slotName] = cmpSlots[slotName] || []); // re-keying the vnodes is necessary to avoid conflicts with default content for the slot
       // which might have similar keys. Each vnode will always have a key that
       // starts with a numeric character from compiler. In this case, we add a unique
       // notation for slotted vnodes keys, e.g.: `@foo:1:1`
@@ -4462,7 +4345,10 @@
       for (let i = 0, len = oldKeys.length; i < len; i += 1) {
         const key = oldKeys[i];
 
-        if (isUndefined(cmpSlots[key]) || oldSlots[key].length !== cmpSlots[key].length) {
+        if (
+          isUndefined(cmpSlots[key]) ||
+          oldSlots[key].length !== cmpSlots[key].length
+        ) {
           markComponentAsDirty(vm);
           return;
         }
@@ -4481,7 +4367,6 @@
   }
 
   function runWithBoundaryProtection(vm, owner, pre, job, post) {
-
     let error;
     pre();
 
@@ -4494,7 +4379,9 @@
 
       if (!isUndefined(error)) {
         error.wcStack = error.wcStack || getErrorComponentStack(vm.elm);
-        const errorBoundaryVm = isNull(owner) ? undefined : getErrorBoundaryVMFromOwnElement(owner);
+        const errorBoundaryVm = isNull(owner)
+          ? undefined
+          : getErrorBoundaryVMFromOwnElement(owner);
 
         if (isUndefined(errorBoundaryVm)) {
           throw error; // eslint-disable-line no-unsafe-finally
@@ -4502,9 +4389,11 @@
 
         resetShadowRoot(vm); // remove offenders
 
-
         const errorCallback = errorBoundaryVm.def.errorCallback;
-        invokeComponentCallback(errorBoundaryVm, errorCallback, [error, error.wcStack]);
+        invokeComponentCallback(errorBoundaryVm, errorCallback, [
+          error,
+          error.wcStack
+        ]);
       }
     }
   }
@@ -4515,17 +4404,15 @@
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
    */
 
-
   const {
     createFieldName: createFieldName$2,
     getHiddenField: getHiddenField$6,
     setHiddenField: setHiddenField$2
   } = fields;
-  const ConnectingSlot = createFieldName$2('connecting', 'engine');
-  const DisconnectingSlot = createFieldName$2('disconnecting', 'engine');
+  const ConnectingSlot = createFieldName$2("connecting", "engine");
+  const DisconnectingSlot = createFieldName$2("disconnecting", "engine");
 
   function callNodeSlot(node, slot) {
-
     const fn = getHiddenField$6(node, slot);
 
     if (!isUndefined(fn)) {
@@ -4535,7 +4422,6 @@
     return node; // for convenience
   } // monkey patching Node methods to be able to detect the insertions and removal of
   // root elements created via createElement.
-
 
   assign(Node.prototype, {
     appendChild(newChild) {
@@ -4559,7 +4445,6 @@
       callNodeSlot(newChild, ConnectingSlot);
       return replacedNode;
     }
-
   });
   /**
    * EXPERIMENTAL: This function is almost identical to document.createElement
@@ -4577,16 +4462,22 @@
 
   function createElement(sel, options) {
     if (!isObject$1(options) || isNull(options)) {
-      throw new TypeError(`"createElement" function expects an object as second parameter but received "${toString(options)}".`);
+      throw new TypeError(
+        `"createElement" function expects an object as second parameter but received "${toString(
+          options
+        )}".`
+      );
     }
 
     let Ctor = options.is;
 
     if (!isFunction(Ctor)) {
-      throw new TypeError(`"createElement" function expects a "is" option with a valid component constructor.`);
+      throw new TypeError(
+        `"createElement" function expects a "is" option with a valid component constructor.`
+      );
     }
 
-    const mode = options.mode !== 'closed' ? 'open' : 'closed'; // Create element with correct tagName
+    const mode = options.mode !== "closed" ? "open" : "closed"; // Create element with correct tagName
 
     const element = document.createElement(sel);
 
@@ -4603,7 +4494,6 @@
 
     const def = getComponentDef(Ctor);
     setElementProto(element, def);
-
 
     createVM(element, Ctor, {
       mode,
@@ -4636,13 +4526,13 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
-  const BEFORE_ALL = 'beforeAll';
-  const BEFORE = 'before';
-  const AFTER_ALL = 'afterAll';
-  const AFTER = 'after';
-  const MODE_ONLY = 'only';
-  const MODE_SKIP = 'skip';
+   */
+  const BEFORE_ALL = "beforeAll";
+  const BEFORE = "before";
+  const AFTER_ALL = "afterAll";
+  const AFTER = "after";
+  const MODE_ONLY = "only";
+  const MODE_SKIP = "skip";
   const MODES = {
     ONLY: MODE_ONLY,
     SKIP: MODE_SKIP
@@ -4653,14 +4543,14 @@
     AFTER_ALL,
     AFTER
   };
-  const RUN_BENCHMARK = 'run_benchmark';
+  const RUN_BENCHMARK = "run_benchmark";
 
   /*
    * Copyright (c) 2019, salesforce.com, inc.
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
   const makeDescribe = (name, parent, mode) => ({
     type: "group",
     mode: parent && !mode ? parent.mode : mode,
@@ -4693,86 +4583,83 @@
 
   const handler = (event, state) => {
     switch (event.nodeType) {
-      case 'start_describe_definition':
-        {
-          const {
-            nodeName,
-            mode
-          } = event;
-          const currentDescribeBlock = state.currentDescribeBlock;
-          const describeBlock = makeDescribe(nodeName, currentDescribeBlock, mode);
-          currentDescribeBlock.children.push(describeBlock);
-          state.currentDescribeBlock = describeBlock;
-          break;
+      case "start_describe_definition": {
+        const { nodeName, mode } = event;
+        const currentDescribeBlock = state.currentDescribeBlock;
+        const describeBlock = makeDescribe(
+          nodeName,
+          currentDescribeBlock,
+          mode
+        );
+        currentDescribeBlock.children.push(describeBlock);
+        state.currentDescribeBlock = describeBlock;
+        break;
+      }
+
+      case "start_benchmark_definition": {
+        const { nodeName, mode } = event;
+        const currentDescribeBlock = state.currentDescribeBlock;
+        const benchmarkBlock = makeBenchmark(
+          nodeName,
+          currentDescribeBlock,
+          mode
+        );
+        currentDescribeBlock.children.push(benchmarkBlock);
+        state.currentDescribeBlock = benchmarkBlock;
+        break;
+      }
+
+      case "finish_describe_definition":
+      case "finish_benchmark_definition": {
+        const currentDescribeBlock = state.currentDescribeBlock;
+
+        if (!currentDescribeBlock) {
+          throw new Error(
+            `"currentDescribeBlock" has to be there since we're finishing its definition.`
+          );
         }
 
-      case 'start_benchmark_definition':
-        {
-          const {
-            nodeName,
-            mode
-          } = event;
-          const currentDescribeBlock = state.currentDescribeBlock;
-          const benchmarkBlock = makeBenchmark(nodeName, currentDescribeBlock, mode);
-          currentDescribeBlock.children.push(benchmarkBlock);
-          state.currentDescribeBlock = benchmarkBlock;
-          break;
+        if (
+          currentDescribeBlock.type === "benchmark" &&
+          !currentDescribeBlock.run
+        ) {
+          throw new Error(
+            `Benchmark "${currentDescribeBlock.name}" must have a 'run()' function or contain benchmarks inside.`
+          );
         }
 
-      case 'finish_describe_definition':
-      case 'finish_benchmark_definition':
-        {
-          const currentDescribeBlock = state.currentDescribeBlock;
-
-          if (!currentDescribeBlock) {
-            throw new Error(`"currentDescribeBlock" has to be there since we're finishing its definition.`);
-          }
-
-          if (currentDescribeBlock.type === "benchmark" && !currentDescribeBlock.run) {
-            throw new Error(`Benchmark "${currentDescribeBlock.name}" must have a 'run()' function or contain benchmarks inside.`);
-          }
-
-          if (currentDescribeBlock.parent) {
-            state.currentDescribeBlock = currentDescribeBlock.parent;
-          }
-
-          break;
+        if (currentDescribeBlock.parent) {
+          state.currentDescribeBlock = currentDescribeBlock.parent;
         }
 
-      case 'add_hook':
-        {
-          const {
-            currentDescribeBlock
-          } = state;
-          const {
+        break;
+      }
+
+      case "add_hook": {
+        const { currentDescribeBlock } = state;
+        const { fn, hookType: type } = event;
+
+        if (fn && type) {
+          currentDescribeBlock.hooks.push({
             fn,
-            hookType: type
-          } = event;
-
-          if (fn && type) {
-            currentDescribeBlock.hooks.push({
-              fn,
-              type
-            });
-          }
-
-          break;
+            type
+          });
         }
 
-      case 'run_benchmark':
-        {
-          const currentDescribeBlock = state.currentDescribeBlock;
-          const {
-            fn
-          } = event;
+        break;
+      }
 
-          if (fn) {
-            const benchmark = makeBenchmarkRun(fn, currentDescribeBlock);
-            currentDescribeBlock.run = benchmark;
-          }
+      case "run_benchmark": {
+        const currentDescribeBlock = state.currentDescribeBlock;
+        const { fn } = event;
 
-          break;
+        if (fn) {
+          const benchmark = makeBenchmarkRun(fn, currentDescribeBlock);
+          currentDescribeBlock.run = benchmark;
         }
+
+        break;
+      }
     }
   };
 
@@ -4785,26 +4672,29 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
-  var DEFAULT_STATE = registerComponent(Object.freeze({
-    benchmarkName: "",
-    useMacroTaskAfterBenchmark: true,
-    maxDuration: 1000 * 20,
-    minSampleCount: 30,
-    iterations: 0,
-    results: [],
-    executedTime: 0,
-    executedIterations: 0
-  }), {
-    tmpl: _tmpl
-  });
+   */
+  var DEFAULT_STATE = registerComponent(
+    Object.freeze({
+      benchmarkName: "",
+      useMacroTaskAfterBenchmark: true,
+      maxDuration: 1000 * 20,
+      minSampleCount: 30,
+      iterations: 0,
+      results: [],
+      executedTime: 0,
+      executedIterations: 0
+    }),
+    {
+      tmpl: _tmpl
+    }
+  );
 
   /*
    * Copyright (c) 2019, salesforce.com, inc.
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
   function cloneState(obj) {
     const stateClone = Object.assign({}, obj);
 
@@ -4824,9 +4714,12 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
   const eventHandlers = [primitivesHandler];
-  const ROOT_DESCRIBE_BLOCK_NAME = typeof BEST_CONFIG !== 'undefined' ? BEST_CONFIG.benchmarkName : 'ROOT_DESCRIBE_BLOCK';
+  const ROOT_DESCRIBE_BLOCK_NAME =
+    typeof BEST_CONFIG !== "undefined"
+      ? BEST_CONFIG.benchmarkName
+      : "ROOT_DESCRIBE_BLOCK";
   const ROOT_DESCRIBE_BLOCK = makeDescribe(ROOT_DESCRIBE_BLOCK_NAME);
   const STATE = Object.assign({}, DEFAULT_STATE, {
     currentDescribeBlock: ROOT_DESCRIBE_BLOCK,
@@ -4862,7 +4755,7 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
 
   /*
    * This code is a slight modification of VueJS next-tick
@@ -4870,7 +4763,7 @@
    *
    */
   function isNative(Ctor) {
-    return typeof Ctor === 'function' && /native code/.test(Ctor.toString());
+    return typeof Ctor === "function" && /native code/.test(Ctor.toString());
   }
 
   const callbacks = [];
@@ -4899,12 +4792,15 @@
 
   /* istanbul ignore if */
 
-  if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
+  if (typeof setImmediate !== "undefined" && isNative(setImmediate)) {
     macroTimerFunc = () => {
       setImmediate(flushCallbacks);
     };
-  } else if (typeof MessageChannel !== 'undefined' && (isNative(MessageChannel) || // PhantomJS
-  MessageChannel.toString() === '[object MessageChannelConstructor]')) {
+  } else if (
+    typeof MessageChannel !== "undefined" &&
+    (isNative(MessageChannel) || // PhantomJS
+      MessageChannel.toString() === "[object MessageChannelConstructor]")
+  ) {
     const channel = new MessageChannel();
     const port = channel.port2;
     channel.port1.onmessage = flushCallbacks;
@@ -4921,8 +4817,7 @@
 
   /* istanbul ignore next, $flow-disable-line */
 
-
-  if (typeof Promise !== 'undefined' && isNative(Promise)) {
+  if (typeof Promise !== "undefined" && isNative(Promise)) {
     const p = Promise.resolve();
 
     microTimerFunc = () => {
@@ -4937,14 +4832,16 @@
    * the changes are queued using a Task instead of a MicroTask.
    */
 
-
   function withMacroTask(fn) {
-    return fn._withTask || (fn._withTask = function () {
-      useMacroTask = true;
-      const res = fn.apply(null, arguments);
-      useMacroTask = false;
-      return res;
-    });
+    return (
+      fn._withTask ||
+      (fn._withTask = function() {
+        useMacroTask = true;
+        const res = fn.apply(null, arguments);
+        useMacroTask = false;
+        return res;
+      })
+    );
   }
   function nextTick(cb, ctx) {
     let _resolve;
@@ -4954,7 +4851,7 @@
         try {
           cb.call(ctx);
         } catch (e) {
-          handleError(e, ctx, 'nextTick');
+          handleError(e, ctx, "nextTick");
         }
       } else if (_resolve) {
         _resolve(ctx);
@@ -4971,40 +4868,44 @@
       }
     }
 
-    return cb ? null : new Promise(resolve => {
-      _resolve = resolve;
-    });
+    return cb
+      ? null
+      : new Promise(resolve => {
+          _resolve = resolve;
+        });
   }
   const time = window.performance.now.bind(window.performance);
   const formatTime = t => Math.round(t * 1000) / 1000;
-  const raf = window && window.requestAnimationFrame ? window.requestAnimationFrame : nextTick;
+  const raf =
+    window && window.requestAnimationFrame
+      ? window.requestAnimationFrame
+      : nextTick;
 
   /*
    * Copyright (c) 2019, salesforce.com, inc.
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
   var BenchmarkMeasureType;
 
-  (function (BenchmarkMeasureType) {
+  (function(BenchmarkMeasureType) {
     BenchmarkMeasureType["Execute"] = "BEST/execute";
     BenchmarkMeasureType["Before"] = "BEST/before";
     BenchmarkMeasureType["After"] = "BEST/after";
   })(BenchmarkMeasureType || (BenchmarkMeasureType = {}));
 
-  const _initHandlers = () => Object.values(HOOKS).reduce((o, k) => {
-    o[k] = [];
-    return o;
-  }, {});
+  const _initHandlers = () =>
+    Object.values(HOOKS).reduce((o, k) => {
+      o[k] = [];
+      return o;
+    }, {});
 
-  const _initHooks = hooks => hooks.reduce((m, {
-    type,
-    fn
-  }) => {
-    m[type].push(fn);
-    return m;
-  }, _initHandlers());
+  const _initHooks = hooks =>
+    hooks.reduce((m, { type, fn }) => {
+      m[type].push(fn);
+      return m;
+    }, _initHandlers());
 
   const _forceGC = () => window.gc && window.gc();
 
@@ -5019,9 +4920,11 @@
     performance.clearMeasures(eventName);
   }
 
-  const executeBenchmark = async (benchmarkNode, markName, {
-    useMacroTaskAfterBenchmark
-  }) => {
+  const executeBenchmark = async (
+    benchmarkNode,
+    markName,
+    { useMacroTaskAfterBenchmark }
+  ) => {
     // Force garbage collection before executing an iteration (--js-flags=--expose-gc)
     _forceGC();
 
@@ -5032,17 +4935,23 @@
 
         try {
           await benchmarkNode.fn();
-          benchmarkNode.metrics.script = formatTime(time() - benchmarkNode.startedAt);
+          benchmarkNode.metrics.script = formatTime(
+            time() - benchmarkNode.startedAt
+          );
 
           if (useMacroTaskAfterBenchmark) {
             withMacroTask(async () => {
               await nextTick();
-              benchmarkNode.aggregate = formatTime(time() - benchmarkNode.startedAt);
+              benchmarkNode.aggregate = formatTime(
+                time() - benchmarkNode.startedAt
+              );
               endMeasure(markName, BenchmarkMeasureType.Execute);
               resolve();
             })();
           } else {
-            benchmarkNode.aggregate = formatTime(time() - benchmarkNode.startedAt);
+            benchmarkNode.aggregate = formatTime(
+              time() - benchmarkNode.startedAt
+            );
             endMeasure(markName, BenchmarkMeasureType.Execute);
             resolve();
           }
@@ -5056,19 +4965,13 @@
   };
 
   const runBenchmarkIteration = async (node, opts) => {
-    const {
-      hooks,
-      children,
-      run
-    } = node;
+    const { hooks, children, run } = node;
 
     const hookHandlers = _initHooks(hooks); // -- Before All ----
-
 
     for (const hook of hookHandlers[HOOKS.BEFORE_ALL]) {
       await hook();
     } // -- For each children ----
-
 
     if (children) {
       for (const child of children) {
@@ -5087,7 +4990,6 @@
         await hook();
       }
 
-
       node.startedAt = formatTime(time());
       await executeBenchmark(run, markName, opts);
       node.aggregate = formatTime(time() - node.startedAt); // -- After ----
@@ -5096,7 +4998,6 @@
         await hook();
       }
     } // -- After All ----
-
 
     for (const hook of hookHandlers[HOOKS.AFTER_ALL]) {
       await hook();
@@ -5110,7 +5011,7 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
   function normalizeResults(benchmarkState) {
     const {
       benchmarkName,
@@ -5131,7 +5032,7 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
   function validateState(benchmarkState) {
     const {
       rootDescribeBlock,
@@ -5144,11 +5045,15 @@
     }
 
     if (rootDescribeBlock !== currentDescribeBlock) {
-      benchmarkState.benchmarkDefinitionError = new Error('Benchmark parsing error');
+      benchmarkState.benchmarkDefinitionError = new Error(
+        "Benchmark parsing error"
+      );
     }
 
     if (rootDescribeBlock.children.length === 0) {
-      benchmarkState.benchmarkDefinitionError = new Error('No benchmarks to run');
+      benchmarkState.benchmarkDefinitionError = new Error(
+        "No benchmarks to run"
+      );
     }
   }
 
@@ -5157,16 +5062,10 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
 
   function collectNodeResults(node) {
-    const {
-      name,
-      aggregate,
-      startedAt,
-      run,
-      children
-    } = node;
+    const { name, aggregate, startedAt, run, children } = node;
     const type = node.type;
     const resultNode = {
       type,
@@ -5186,10 +5085,11 @@
   }
 
   async function runIterations(config) {
-    if (config.executedTime < config.maxDuration || config.executedIterations < config.minSampleCount) {
-      const {
-        useMacroTaskAfterBenchmark
-      } = config;
+    if (
+      config.executedTime < config.maxDuration ||
+      config.executedIterations < config.minSampleCount
+    ) {
+      const { useMacroTaskAfterBenchmark } = config;
       const benchmark = await runBenchmarkIteration(getBenchmarkRootNode(), {
         useMacroTaskAfterBenchmark
       });
@@ -5225,67 +5125,75 @@
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
 
   const _dispatchDescribe = (nodeName, blockFn, mode) => {
     dispatch({
       nodeName,
       mode,
-      nodeType: 'start_describe_definition'
+      nodeType: "start_describe_definition"
     });
     blockFn();
     dispatch({
       nodeName,
-      nodeType: 'finish_describe_definition'
+      nodeType: "finish_describe_definition"
     });
   };
 
-  const describe = (blockName, blockFn) => _dispatchDescribe(blockName, blockFn);
+  const describe = (blockName, blockFn) =>
+    _dispatchDescribe(blockName, blockFn);
 
-  describe.only = (blockName, blockFn) => _dispatchDescribe(blockName, blockFn, MODES.ONLY);
+  describe.only = (blockName, blockFn) =>
+    _dispatchDescribe(blockName, blockFn, MODES.ONLY);
 
-  describe.skip = (blockName, blockFn) => _dispatchDescribe(blockName, blockFn, MODES.SKIP);
+  describe.skip = (blockName, blockFn) =>
+    _dispatchDescribe(blockName, blockFn, MODES.SKIP);
 
   const _dispatchBenchmark = (nodeName, blockFn, mode) => {
     dispatch({
       nodeName,
       mode,
-      nodeType: 'start_benchmark_definition'
+      nodeType: "start_benchmark_definition"
     });
     blockFn();
     dispatch({
       nodeName,
-      nodeType: 'finish_benchmark_definition'
+      nodeType: "finish_benchmark_definition"
     });
   };
 
-  const benchmark = (benchmarkName, fn) => _dispatchBenchmark(benchmarkName, fn);
+  const benchmark = (benchmarkName, fn) =>
+    _dispatchBenchmark(benchmarkName, fn);
 
-  benchmark.only = (benchmarkName, fn) => _dispatchBenchmark(benchmarkName, fn, MODES.ONLY);
+  benchmark.only = (benchmarkName, fn) =>
+    _dispatchBenchmark(benchmarkName, fn, MODES.ONLY);
 
-  benchmark.skip = (benchmarkName, fn) => _dispatchBenchmark(benchmarkName, fn, MODES.SKIP);
+  benchmark.skip = (benchmarkName, fn) =>
+    _dispatchBenchmark(benchmarkName, fn, MODES.SKIP);
 
-  const _addHook = (fn, hookType) => dispatch({
-    nodeName: 'hook',
-    fn,
-    hookType,
-    nodeType: 'add_hook'
-  });
+  const _addHook = (fn, hookType) =>
+    dispatch({
+      nodeName: "hook",
+      fn,
+      hookType,
+      nodeType: "add_hook"
+    });
 
   const afterAll = fn => _addHook(fn, HOOKS.AFTER_ALL);
 
-  const run = fn => dispatch({
-    nodeName: 'run',
-    fn,
-    nodeType: RUN_BENCHMARK
-  });
+  const run = fn =>
+    dispatch({
+      nodeName: "run",
+      fn,
+      nodeType: RUN_BENCHMARK
+    });
 
   /*
    * Copyright (c) 2019, salesforce.com, inc.
    * All rights reserved.
    * SPDX-License-Identifier: MIT
    * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
-  */
+   */
 
   const setupBenchmark = config => initializeBenchmarkConfig(config);
 
@@ -5299,7 +5207,6 @@
     return benchmarkResults;
   }; // Expose BEST API
 
-
   const BEST = {
     setupBenchmark,
     runBenchmark: runBenchmark$1
@@ -5307,11 +5214,11 @@
   window.BEST = BEST;
   window.process = {
     env: {
-      NODE_ENV: 'development'
+      NODE_ENV: "development"
     }
   }; // Auto-load
 
-  window.addEventListener('load', async () => {
+  window.addEventListener("load", async () => {
     const config = setupBenchmark(window.BEST_CONFIG);
 
     if (config.autoStart) {
@@ -5319,16 +5226,16 @@
     }
   });
 
-  describe('my-app', () => {
+  describe("my-app", () => {
     // eslint-disable-next-line no-undef
-    benchmark('create_and_render', () => {
+    benchmark("create_and_render", () => {
       let element; // eslint-disable-next-line no-undef
 
       run(() => {
-        element = createElement('my-app', {
+        element = createElement("my-app", {
           is: MyApp
         });
-        element.flavor = 'red';
+        element.flavor = "red";
         document.body.appendChild(element);
       });
       afterAll(() => {
@@ -5336,5 +5243,4 @@
       });
     });
   });
-
-}(MyApp));
+})(MyApp);
