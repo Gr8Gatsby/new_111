@@ -1,12 +1,12 @@
 <template>
   <div class="css-only-class">
-    <template if:true="{formFactorModule}">
+    <template if:true={formFactorModule}>
       {title}
-      <template if:true="{isMobile}">
-        <c-mobile passed-in-value="{passedInValue}"></c-mobile>
+      <template if:true={isMobile}>
+        <c-mobile passed-in-value={passedInValue}></c-mobile>
       </template>
-      <template if:true="{isDesktop}">
-        <c-desktop passed-in-value="{passedInValue}"></c-desktop>
+      <template if:true={isDesktop}>
+        <c-desktop passed-in-value={passedInValue}></c-desktop>
       </template>
     </template>
   </div>
