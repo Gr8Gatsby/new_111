@@ -1,4 +1,4 @@
-/* @import "c/cssOnlyModule"; */
+@import 'c/cssOnlyModule';
 .greet {
   font-size: xx-large;
 }
