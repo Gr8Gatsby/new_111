@@ -4,7 +4,7 @@
   "author": "Kevin",
   "bugs": "https://github.com/Kevin/new_111/issues",
   "dependencies": {
-    "lwc-services": "1.3.9-beta.1"
+    "lwc-services": "3.2.2"
   },
   "devDependencies": {
     "@best/cli": "4.0.0-alpha15",
